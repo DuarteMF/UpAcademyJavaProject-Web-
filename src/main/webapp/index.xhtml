@@ -1,18 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 	<h:head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
 	</h:head>
 	<h:body>
-		<h:form>
-			<h:inputText value="#{navigator.name}" />
-			<h:selectOneRadio value="#{navigator.disabled}" >
-				<f:selectItem itemValue="true" itemLabel="Disabled" />
-				<f:selectItem itemValue="false" itemLabel="Enabled" />
-			</h:selectOneRadio>
-			<h:commandButton value="Say Hello" action="result" />
-		</h:form>
-	</h:body>
+	<!-- <p:dataTable var="product" value="#{ProductView.products}">
+		<p:column headerText="Id">
+			<h:outputText value="#{product.id}" />
+		</p:column>
+
+		<p:column headerText="Name">
+			<h:outputText value="#{product.name}" />
+		</p:column>
+
+		<p:column headerText="Shelves">
+			<h:outputText value="#{product.shelfIdLocation}" />
+		</p:column>
+
+		<p:column headerText="Discount">
+			<h:outputText value="#{product.discount}" />
+		</p:column>
+
+		<p:column headerText="VAT">
+			<h:outputText value="#{product.tax}" />
+		</p:column>
+
+		<p:column headerText="Price">
+			<h:outputText value="#{product.salePrice}" />
+		</p:column>
+	</p:dataTable> -->
+
+	<p:dataTable var="car" value="#{dtBasicView.cars}">
+		<p:column headerText="Id">
+			<h:outputText value="#{car.id}" />
+		</p:column>
+
+		<p:column headerText="Year">
+			<h:outputText value="#{car.year}" />
+		</p:column>
+
+		<p:column headerText="Brand">
+			<h:outputText value="#{car.brand}" />
+		</p:column>
+
+		<p:column headerText="Color">
+			<h:outputText value="#{car.color}" />
+		</p:column>
+	</p:dataTable>
+</h:body>
 </html>
