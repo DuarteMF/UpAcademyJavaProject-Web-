@@ -7,7 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
 	</h:head>
 	<h:body>
-	<p:dataTable var="product" value="#{dtBasicView.products}">
+	<p:dataTable var="product" value="#{ProductView.products}">
 		<p:column headerText="Id">
 			<h:outputText value="#{product.id}" />
 		</p:column>
@@ -17,7 +17,7 @@
 		</p:column>
 
 		<p:column headerText="Shelves">
-			<h:outputText value="#{product.shelves}" />
+			<h:outputText value="#{product.shelfIdLocation}" />
 		</p:column>
 
 		<p:column headerText="Discount">
@@ -25,11 +25,11 @@
 		</p:column>
 
 		<p:column headerText="VAT">
-			<h:outputText value="#{product.vat}" />
+			<h:outputText value="#{product.tax}" />
 		</p:column>
 
 		<p:column headerText="Price">
-			<h:outputText value="#{product.price}" />
+			<h:outputText value="#{product.salePrice}" />
 		</p:column>
 	</p:dataTable>
 </h:body>

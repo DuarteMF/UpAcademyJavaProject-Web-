@@ -1,6 +1,6 @@
 package io.altar.jeeproject.model;
 
-import io.altar.jseproject.repository.ShelfRepository;
+import io.altar.jeeproject.repository.ShelfRepository;
 
 public class Shelf extends Entity{
 	private Integer location;

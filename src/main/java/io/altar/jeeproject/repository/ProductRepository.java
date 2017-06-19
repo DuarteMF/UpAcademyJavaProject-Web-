@@ -3,7 +3,8 @@ package io.altar.jeeproject.repository;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import io.altar.jseproject.model.Product;
+import io.altar.jeeproject.model.Product;
+
 
 public class ProductRepository extends EntityRepository<Product> {
 	private static final ProductRepository INSTANCE = new ProductRepository();

@@ -1,6 +1,6 @@
 package io.altar.jeeproject.repository;
 
-import io.altar.jseproject.model.Shelf;
+import io.altar.jeeproject.model.Shelf;
 
 public class ShelfRepository extends EntityRepository<Shelf> {
 	private static final ShelfRepository INSTANCE = new ShelfRepository();

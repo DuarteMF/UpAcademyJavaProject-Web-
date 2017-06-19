@@ -2,7 +2,7 @@ package io.altar.jeeproject.model;
 
 import java.util.ArrayList;
 
-import io.altar.jseproject.repository.ProductRepository;
+import io.altar.jeeproject.repository.ProductRepository;
 
 public class Product extends Entity{
 	private ArrayList<Integer> shelfIdLocation;
