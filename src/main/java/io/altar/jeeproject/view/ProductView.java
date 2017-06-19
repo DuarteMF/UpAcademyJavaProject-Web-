@@ -11,18 +11,18 @@ import javax.faces.bean.ViewScoped;
 import io.altar.jeeproject.model.Product;
 import io.altar.jeeproject.service.ProductService;
 
-//@ManagedBean(name="ProductView")
-//@ViewScoped
+@ManagedBean(name="ProductView")
+@ViewScoped
 public class ProductView implements Serializable {
 	
 	private List<Product> products;
 	
 	@ManagedProperty(value="#{productService}")
-    private ProductService service;
+    private ProductService productService;
  
     @PostConstruct
     public void init() {
-    	products = service.createProducts();
+    	products = productService.createProducts();
     			
     }
      
@@ -31,11 +31,11 @@ public class ProductView implements Serializable {
     }
     
     public ProductService getProductService() {
-        return service;
+        return productService;
     }
  
-    public void setProductService(ProductService service) {
-        this.service = service;
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
     }
 
 }
