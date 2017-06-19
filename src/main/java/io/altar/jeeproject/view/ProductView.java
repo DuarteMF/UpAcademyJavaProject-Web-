@@ -11,8 +11,8 @@ import javax.faces.bean.ViewScoped;
 import io.altar.jeeproject.model.Product;
 import io.altar.jeeproject.service.ProductService;
 
-@ManagedBean(name="ProductView")
-@ViewScoped
+//@ManagedBean(name="ProductView")
+//@ViewScoped
 public class ProductView implements Serializable {
 	
 	private List<Product> products;

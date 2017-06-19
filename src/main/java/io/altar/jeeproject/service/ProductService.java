@@ -10,8 +10,8 @@ import javax.faces.bean.ManagedBean;
 import io.altar.jeeproject.model.Product;
 import io.altar.jeeproject.repository.ProductRepository;
 
-@ManagedBean(name = "productService")
-@ApplicationScoped
+//@ManagedBean(name = "productService")
+//@ApplicationScoped
 public class ProductService {
 	private ProductRepository productList = ProductRepository.getInstance();
 	
