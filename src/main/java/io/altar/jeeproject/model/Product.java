@@ -10,6 +10,7 @@ public class Product extends Entity{
 	private Integer discount;
 	private Integer tax;
 	private Double salePrice;	
+	private ProductRepository productRepository = new ProductRepository();
 	
 	public void setShelfIdLocation(ArrayList<Integer> shelfIdLocation){
 		this.shelfIdLocation = shelfIdLocation;
@@ -57,7 +58,7 @@ public class Product extends Entity{
 		this.discount = discount;
 		this.tax = tax;
 		this.salePrice = salePrice;
-		ProductRepository.getInstance().addToList(this);
+		productRepository.addToList(this);
 	}
 	
 	@Override

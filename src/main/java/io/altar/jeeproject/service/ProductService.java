@@ -13,7 +13,7 @@ import io.altar.jeeproject.repository.ProductRepository;
 @ManagedBean(name = "productService")
 @ApplicationScoped
 public class ProductService {
-	private ProductRepository productList = ProductRepository.getInstance();
+	private ProductRepository productList = new ProductRepository();
 	
 	public List<Product> createProducts() {
         List<Product> list = new ArrayList<Product>();

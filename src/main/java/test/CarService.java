@@ -9,8 +9,8 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import test.Car;
  
-@ManagedBean(name = "carService")
-@ApplicationScoped
+//@ManagedBean(name = "carService")
+//@ApplicationScoped
 public class CarService {
      
     private final static String[] colors;

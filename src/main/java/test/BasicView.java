@@ -11,8 +11,8 @@ import javax.faces.bean.ViewScoped;
 import test.CarService;
 import test.Car;
  
-@ManagedBean(name="dtBasicView")
-@ViewScoped
+//@ManagedBean(name="dtBasicView")
+//@ViewScoped
 public class BasicView implements Serializable {
      
     private List<Car> cars;
