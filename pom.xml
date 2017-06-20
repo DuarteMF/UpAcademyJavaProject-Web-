@@ -24,7 +24,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>JSF_DEMO</finalName>
+		<finalName>STORE_MANAGER</finalName>
 		
 			<plugins>
         <plugin>
