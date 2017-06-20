@@ -43,7 +43,7 @@
 							<h:outputText value="#{product.salePrice}" />
 						</p:column>
 						<f:facet name="footer">
-							<p:commandButton process="ProductList" update="productDetail"
+							<p:commandButton process="ProductList" update=":form:j_idt10:productDetail"
 								icon="ui-icon-search" value="View"
 								oncomplete="PF('productDialog').show()" />
 						</f:facet> 
