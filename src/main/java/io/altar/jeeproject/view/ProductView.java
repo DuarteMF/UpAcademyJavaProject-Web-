@@ -16,6 +16,7 @@ import io.altar.jeeproject.service.ProductService;
 public class ProductView implements Serializable {
 	
 	private List<Product> products;
+	private Product selectedProduct;
 	
 	@ManagedProperty(value="#{productService}")
     private ProductService productService;
@@ -36,5 +37,13 @@ public class ProductView implements Serializable {
  
     public void setProductService(ProductService productService) {
         this.productService = productService;
+    }
+    
+    public Product getSelectedProduct() {
+        return selectedProduct;
+    }
+ 
+    public void setSelectedProduct(Product selectedProduct) {
+        this.selectedProduct = selectedProduct;
     }
 }
