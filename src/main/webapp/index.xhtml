@@ -3,52 +3,83 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-	<h:head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
-	</h:head>
-	<h:body>
-	<p:dataTable var="product" value="#{ProductView.products}">
-		<p:column headerText="Id">
-			<h:outputText value="#{product.id}" />
-		</p:column>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
 
-		<p:column headerText="Name">
-			<h:outputText value="#{product.name}" />
-		</p:column>
+	<h:form id="form">
 
-		<p:column headerText="Shelves">
-			<h:outputText value="#{product.shelfIdLocation}" />
-		</p:column>
+		<p:growl id="msgs" showDetail="true" />
+		<p:tabView>
+			<p:tab title="Produtos">
+				<p:dataTable var="product" value="#{ProductView.products}">
+					<p:column headerText="ID">
+						<h:outputText value="#{product.id}" />
+					</p:column>
 
-		<p:column headerText="Discount">
-			<h:outputText value="#{product.discount}" />
-		</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{product.name}" />
+					</p:column>
 
-		<p:column headerText="VAT">
-			<h:outputText value="#{product.tax}" />
-		</p:column>
+					<p:column headerText="Prateleiras">
+						<h:outputText value="#{product.shelfIdLocation}" />
+					</p:column>
 
-		<p:column headerText="Price">
-			<h:outputText value="#{product.salePrice}" />
-		</p:column>
-	</p:dataTable>
+					<p:column headerText="Desconto">
+						<h:outputText value="#{product.discount}" />
+					</p:column>
 
-<!-- 	<p:dataTable var="car" value="#{dtBasicView.cars}"> -->
-<!-- 		<p:column headerText="Id"> -->
-<!-- 			<h:outputText value="#{car.id}" /> -->
-<!-- 		</p:column> -->
+					<p:column headerText="IVA">
+						<h:outputText value="#{product.tax}" />
+					</p:column>
+					<p:column headerText="Preço">
+						<h:outputText value="#{product.salePrice}" />
+					</p:column>
+				</p:dataTable>
+			</p:tab>
+			<p:tab title="Prateleiras">
+				<p:dataTable var="shelf" value="#{ShelfView.shelves}">
+					<p:column headerText="ID">
+						<h:outputText value="#{shelf.id}" />
+					</p:column>
 
-<!-- 		<p:column headerText="Year"> -->
-<!-- 			<h:outputText value="#{car.year}" /> -->
-<!-- 		</p:column> -->
+					<p:column headerText="Localização">
+						<h:outputText value="#{shelf.location}" />
+					</p:column>
 
-<!-- 		<p:column headerText="Brand"> -->
-<!-- 			<h:outputText value="#{car.brand}" /> -->
-<!-- 		</p:column> -->
+					<p:column headerText="Capacidade">
+						<h:outputText value="#{shelf.capacity}" />
+					</p:column>
 
-<!-- 		<p:column headerText="Color"> -->
-<!-- 			<h:outputText value="#{car.color}" /> -->
-<!-- 		</p:column> -->
-<!-- 	</p:dataTable> -->
+					<p:column headerText="ID do Produto">
+						<h:outputText value="#{shelf.productID}" />
+					</p:column>
+
+					<p:column headerText="Preço de Aluguer">
+						<h:outputText value="#{shelf.locationRentalPrice}" />
+					</p:column>
+				</p:dataTable>
+			</p:tab>
+		</p:tabView>
+	</h:form>
+
+	<!-- 	<p:dataTable var="car" value="#{dtBasicView.cars}"> -->
+	<!-- 		<p:column headerText="Id"> -->
+	<!-- 			<h:outputText value="#{car.id}" /> -->
+	<!-- 		</p:column> -->
+
+	<!-- 		<p:column headerText="Year"> -->
+	<!-- 			<h:outputText value="#{car.year}" /> -->
+	<!-- 		</p:column> -->
+
+	<!-- 		<p:column headerText="Brand"> -->
+	<!-- 			<h:outputText value="#{car.brand}" /> -->
+	<!-- 		</p:column> -->
+
+	<!-- 		<p:column headerText="Color"> -->
+	<!-- 			<h:outputText value="#{car.color}" /> -->
+	<!-- 		</p:column> -->
+	<!-- 	</p:dataTable> -->
 </h:body>
 </html>

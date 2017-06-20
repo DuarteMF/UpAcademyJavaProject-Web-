@@ -37,5 +37,4 @@ public class ProductView implements Serializable {
     public void setProductService(ProductService productService) {
         this.productService = productService;
     }
-
 }
