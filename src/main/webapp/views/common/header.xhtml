@@ -2,13 +2,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
-    <body>
-	    <ui:composition>
-
-		<h1>This is default header</h1>
-
-	    </ui:composition>
-    </body>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+	<h:head>
+	<h:outputStylesheet library = "css" name = "style.css"></h:outputStylesheet>
+	</h:head>
+<body>
+	<ui:composition>
+		<b:navBar brandHref="https://www.upacademy.pt/"
+			brand-img="http://upacademy.pt/media/2016/11/UP-Academy-LEARNING-FOR-SUCCESS-resized-1.png"
+			brand-target="#" brand-img-style="height:150%;" position= "top" sticky="true" fluid="true">
+			<b:navbarLinks>
+				<b:navLink value="Gestor de Loja" href="index.xhtml"></b:navLink>
+			</b:navbarLinks>
+			<b:navbarLinks pull="right" styleClass="hidden-xs">
+				<b:navLink value="Contactos" href="#"></b:navLink>
+			</b:navbarLinks>
+		</b:navBar>
+	</ui:composition>
+</body>
 </html>
