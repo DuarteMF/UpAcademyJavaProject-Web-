@@ -2,13 +2,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
-    <body>
-	    <ui:composition>
-
-		<h1>This is default footer</h1>
-
-	    </ui:composition>
-    </body>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+	<h:head>
+	<h:outputStylesheet library = "css" name = "style.css"></h:outputStylesheet>
+	</h:head>
+<body>
+	<ui:composition>
+	<b:navBar fluid="true" position="bottom" sticky="true" style="">
+			<p class="col-xs-4">Created by: Duarte Ferreira</p>
+		<p class="col-xs-4" id="Date"></p>
+		<p class="col-xs-4">Contact information:
+			duartepferreira@hotmail.com</p>
+		</b:navBar>
+		
+	</ui:composition>
+</body>
 </html>
