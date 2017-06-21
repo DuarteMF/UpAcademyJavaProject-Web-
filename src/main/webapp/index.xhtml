@@ -16,10 +16,10 @@
 		<!-- <ui:define name="header"/> -->
 		<ui:define name="content">
 		<h:form id="form">
-			<p:growl id="msgs" showDetail="true" />
 			<p:tabView>
 				<p:tab title="Produtos">
-					<p:dataTable id="ProductList" var="product" value="#{ProductView.products}" selectionMode="single" selection="#{ProductView.selectedProduct}" rowKey="#{product.id}" stickyHeader="true">
+			<p:growl id="msgs" showDetail="true" />
+					<p:dataTable id="ProductList" var="product" value="#{ProductView.products}" selectionMode="single" selection="#{ProductView.selectedProduct}" rowKey="#{product.id}" draggableColumns="true">
 						<p:column headerText="ID">
 							<h:outputText value="#{product.id}" />
 						</p:column>
@@ -48,9 +48,8 @@
 								oncomplete="PF('productDialog').show()" />
 						</f:facet> 
 						</p:dataTable>
-				</p:tab>
-
-					<p:dialog header="Product Info" widgetVar="productDialog" modal="true"
+						
+						<p:dialog header="Product Info" widgetVar="productDialog" modal="true"
 						showEffect="fade" hideEffect="fade" resizable="false">
 						<p:outputPanel id="productDetail" style="text-align:center;">
 							<p:panelGrid columns="2"
@@ -76,6 +75,9 @@
 							</p:panelGrid>
 						</p:outputPanel>
 					</p:dialog>
+				</p:tab>
+
+					
 
 					<p:tab title="Prateleiras">
 					<p:dataTable var="shelf" value="#{ShelfView.shelves}">
