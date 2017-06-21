@@ -3,12 +3,9 @@ package io.altar.jeeproject.repository;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.faces.bean.ApplicationScoped;
-
 import io.altar.jeeproject.model.Product;
 
 
-@ApplicationScoped
 public class ProductRepository extends EntityRepository<Product> {
 //	private static final ProductRepository INSTANCE = new ProductRepository();
 
