@@ -3,3 +3,16 @@
 p{
 	color:red;
 }
+div{
+	background-color:blue;
+}
+li{
+	color:green;
+}
+.navbar{
+	font-size:15px;
+}
+#mainPage{
+	padding-top:50px;
+	padding-bottom:50px;
+}

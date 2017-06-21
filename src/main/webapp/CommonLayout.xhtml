@@ -7,7 +7,7 @@
       >
 
     <h:head>
-<!-- 	<h:outputStylesheet name="common-style.css" library="css" />-->
+<h:outputStylesheet library = "css" name = "style.css"></h:outputStylesheet>
     </h:head>
 
     <h:body>
@@ -20,14 +20,14 @@
 		</ui:insert>
 	    </div>
 	    
-	    <div id="mainPage">
-	    <div id="menu">
+	    <div id="mainPage" style="padding-top:50px;padding-bottom:50px;display:inline-block">
+	    <div id="menu" style="width:10%;float:left;">
 	  	<ui:insert name="menu" >
 	 	  <ui:include src="/views/common/menu.xhtml" />
 	   	</ui:insert>
 	    </div>
 
-	    <div id="content">
+	    <div id="content" style="max-width:90%;float:right;">
 	  	<ui:insert name="content" >
 	 	  
 	   	</ui:insert>

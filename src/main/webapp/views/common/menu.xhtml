@@ -2,13 +2,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
-    <body>
-	    <ui:composition>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:b="http://bootsfaces.net/ui">
+<body>
+	<ui:composition>
 
-		<h1>This is default menu</h1>
+		<h:form>
+			<p:growl id="messages" showDetail="false" />
 
-	    </ui:composition>
-    </body>
+			<h3 style="margin-top: 0">Menu</h3>
+			<p:menu>
+				<p:menuitem value="Add New" actionListener="#{menuView.save}"
+					update="messages" icon="ui-icon-add" />
+				<p:menuitem value="Edit Existing"
+					actionListener="#{menuView.update}" update="messages"
+					icon="ui-icon-edit" />
+				<p:menuitem value="Display Existing"
+					actionListener="#{menuView.display}" update="messages"
+					icon="ui-icon-home" />
+				<p:menuitem value="Delete Existing"
+					actionListener="#{menuView.delete}" update="messages"
+					icon="ui-icon-close" />
+			</p:menu>
+		</h:form>
+
+	</ui:composition>
+</body>
 </html>
