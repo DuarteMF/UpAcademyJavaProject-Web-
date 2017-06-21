@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
 import io.altar.jeeproject.model.Product;
 import io.altar.jeeproject.repository.ProductRepository;
 
 @ManagedBean(name = "productService")
-@ApplicationScoped
 public class ProductService {
 	private ProductRepository productList = new ProductRepository();
 	
