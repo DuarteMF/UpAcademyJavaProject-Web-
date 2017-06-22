@@ -91,7 +91,12 @@
 					<p:tab title="Prateleiras">
 						<p:dataTable id="ShelfList" var="shelf" value="#{ShelfView.shelves}"
 							selectionMode="single" selection="#{ShelfView.selectedShelf}"
-							rowKey="#{shelf.id}" draggableColumns="true">
+							rowKey="#{shelf.id}" draggableColumns="true">							
+							<f:facet name="header">
+								<p:commandButton value="Add" action="#{ShelfView.addShelf()}"/>
+								<p:commandButton value="Edit" action="#{ShelfView.editShelf()}"/>
+								<p:commandButton value="Delete" action="#{ShelfView.deleteShelf()}"/>
+							</f:facet>
 							<p:column headerText="ID">
 								<h:outputText value="#{shelf.id}" />
 							</p:column>

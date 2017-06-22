@@ -49,4 +49,19 @@ public class ShelfView implements Serializable{
     public void setSelectedShelf(Shelf selectedShelf) {
         this.selectedShelf = selectedShelf;
     }
+    
+    public String addShelf(){
+    	shelfService.addShelf();
+    	return null;
+    }
+    
+    public String editShelf(){
+    	shelfService.addShelf();
+    	return null;
+    }
+    
+    public String deleteShelf(){
+    	shelfService.addShelf();
+    	return null;
+    }
 }
