@@ -27,7 +27,6 @@ public class ProductView implements Serializable {
     @PostConstruct
     public void init() {
     	products = productService.showProducts();
-    			
     }
      
     public List<Product> getProducts() {
@@ -48,5 +47,20 @@ public class ProductView implements Serializable {
  
     public void setSelectedProduct(Product selectedProduct) {
         this.selectedProduct = selectedProduct;
+    }
+    
+    public String addProduct(){
+    	productService.addProducts();
+    	return null;
+    }
+    
+    public String editProduct(){
+    	productService.addProducts();
+    	return null;
+    }
+    
+    public String deleteProduct(){
+    	productService.addProducts();
+    	return null;
     }
 }

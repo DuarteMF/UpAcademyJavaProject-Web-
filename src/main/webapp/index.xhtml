@@ -22,6 +22,11 @@
 							value="#{ProductView.products}" selectionMode="single"
 							selection="#{ProductView.selectedProduct}" rowKey="#{product.id}"
 							draggableColumns="true">
+							<f:facet name="header">
+								<p:commandButton value="Add" action="#{ProductView.addProduct()}"/>
+								<p:commandButton value="Edit" action="#{ProductView.editProduct()}"/>
+								<p:commandButton value="Delete" action="#{ProductView.deleteProduct()}"/>
+							</f:facet>
 							<p:column headerText="ID">
 								<h:outputText value="#{product.id}" />
 							</p:column>
@@ -46,7 +51,7 @@
 							</p:column>
 							<f:facet name="footer">
 								<p:commandButton process="ProductList"
-									update=":form:j_idt14:productDetail" icon="ui-icon-search"
+									update=":form:j_idt21:productDetail" icon="ui-icon-search"
 									value="View" oncomplete="PF('productDialog').show()" />
 							</f:facet>
 						</p:dataTable>
@@ -84,7 +89,7 @@
 
 
 					<p:tab title="Prateleiras">
-						<p:dataTable var="shelf" value="#{ShelfView.shelves}"
+						<p:dataTable id="ShelfList" var="shelf" value="#{ShelfView.shelves}"
 							selectionMode="single" selection="#{ShelfView.selectedShelf}"
 							rowKey="#{shelf.id}" draggableColumns="true">
 							<p:column headerText="ID">
@@ -108,7 +113,7 @@
 							</p:column>
 							<f:facet name="footer">
 								<p:commandButton process="ShelfList"
-									update=":form:j_idt14:shelfDetail" icon="ui-icon-search"
+									update=":form:j_idt21:shelfDetail" icon="ui-icon-search"
 									value="View" oncomplete="PF('shelfDialog').show()" />
 							</f:facet>
 						</p:dataTable>
