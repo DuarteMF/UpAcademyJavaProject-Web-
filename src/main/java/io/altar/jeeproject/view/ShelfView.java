@@ -4,25 +4,29 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
 
 import io.altar.jeeproject.model.Shelf;
 import io.altar.jeeproject.service.ShelfService;
 
 @ManagedBean(name="ShelfView")
-@ViewScoped
+@RequestScoped
 public class ShelfView implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<Shelf> shelves;
+	private Shelf selectedShelf;
 	
-	@ManagedProperty(value="#{shelfService}")
-    private ShelfService shelfService;
+	@Inject ShelfService shelfService;
  
     @PostConstruct
     public void init() {
-    	shelves = shelfService.createShelves();
+    	shelves = shelfService.showShelves();
     			
     }
      
@@ -36,5 +40,13 @@ public class ShelfView implements Serializable{
  
     public void setShelfService(ShelfService shelfService) {
         this.shelfService = shelfService;
+    }
+    
+    public Shelf getSelectedShelf() {
+        return selectedShelf;
+    }
+ 
+    public void setSelectedShelf(Shelf selectedShelf) {
+        this.selectedShelf = selectedShelf;
     }
 }

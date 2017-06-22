@@ -9,8 +9,7 @@ public class Product extends Entity{
 	private String name;
 	private Integer discount;
 	private Integer tax;
-	private Double salePrice;	
-	private ProductRepository productRepository = new ProductRepository();
+	private Double salePrice;
 	
 	public void setShelfIdLocation(ArrayList<Integer> shelfIdLocation){
 		this.shelfIdLocation = shelfIdLocation;
@@ -58,7 +57,7 @@ public class Product extends Entity{
 		this.discount = discount;
 		this.tax = tax;
 		this.salePrice = salePrice;
-		productRepository.addToList(this);
+		ProductRepository.getInstance().addToList(this);
 	}
 	
 	@Override
