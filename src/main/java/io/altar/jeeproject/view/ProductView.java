@@ -1,9 +1,9 @@
 package io.altar.jeeproject.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
@@ -19,15 +19,17 @@ public class ProductView implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private List<Product> products;
+//	private List<Product> products;
 	private Product selectedProduct;
 	
-	@Inject ProductService productService;
+	@Inject static ProductService productService;
  
-    @PostConstruct
-    public void init() {
-    	products = productService.showProducts();
-    }
+//    @PostConstruct
+//    public void init() {
+//    	products = productService.showProducts();
+//    }
+	
+	private static final List<Product> products = new ArrayList<>();
      
     public List<Product> getProducts() {
         return products;
@@ -38,7 +40,8 @@ public class ProductView implements Serializable {
     }
  
     public void setProductService(ProductService productService) {
-        this.productService = productService;
+//        this.productService = productService;
+        ProductView.productService = productService;
     }
     
     public Product getSelectedProduct() {
@@ -50,17 +53,23 @@ public class ProductView implements Serializable {
     }
     
     public String addProduct(){
-    	productService.addProducts();
+    	Product product = new Product(null ,"teste",1,6,5.0);
+    	productService.addProduct(product);
+    	products.add(product);
     	return null;
     }
     
     public String editProduct(){
-    	productService.addProducts();
+    	Product product = new Product(null ,"teste",1,6,5.0);
+    	productService.addProduct(product);
+    	products.add(product);
     	return null;
     }
     
     public String deleteProduct(){
-    	productService.addProducts();
+    	Product product = new Product(null ,"teste",1,6,5.0);
+    	productService.addProduct(product);
+    	products.add(product);
     	return null;
     }
 }

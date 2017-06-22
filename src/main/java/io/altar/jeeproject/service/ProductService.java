@@ -20,7 +20,7 @@ public class ProductService {
         return list;
     }
 	
-	public void addProducts(){
-		productList.addToList(new Product(null ,"teste",1,6,5.0));
+	public void addProduct(Product product){
+		productList.addToList(product);
 	}
 }

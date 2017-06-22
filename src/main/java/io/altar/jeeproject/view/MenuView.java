@@ -54,10 +54,10 @@ public class MenuView {
         return model;
     }   
      
-    @Inject ProductService productService;
-    public void add() {
-    	productService.addProducts();
-    }
+//    @Inject ProductService productService;
+//    public void add() {
+//    	productService.addProducts();
+//    }
      
     public void update() {
         addMessage("Success", "Data updated");
