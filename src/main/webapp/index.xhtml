@@ -84,7 +84,9 @@
 
 
 					<p:tab title="Prateleiras">
-						<p:dataTable var="shelf" value="#{ShelfView.shelves}">
+						<p:dataTable var="shelf" value="#{ShelfView.shelves}"
+							selectionMode="single" selection="#{ShelfView.selectedShelf}"
+							rowKey="#{shelf.id}" draggableColumns="true">
 							<p:column headerText="ID">
 								<h:outputText value="#{shelf.id}" />
 							</p:column>
@@ -104,7 +106,34 @@
 							<p:column headerText="Preço de Aluguer">
 								<h:outputText value="#{shelf.locationRentalPrice}" />
 							</p:column>
+							<f:facet name="footer">
+								<p:commandButton process="ShelfList"
+									update=":form:j_idt14:shelfDetail" icon="ui-icon-search"
+									value="View" oncomplete="PF('shelfDialog').show()" />
+							</f:facet>
 						</p:dataTable>
+
+						<p:dialog header="Shelf Info" widgetVar="shelfDialog" modal="true"
+							showEffect="fade" hideEffect="fade" resizable="false">
+							<p:outputPanel id="shelfDetail" style="text-align:center;">
+								<p:panelGrid columns="2"
+									rendered="#{not empty ShelfView.selectedShelf}"
+									columnClasses="label,value">
+									<h:outputText value="ID:" />
+									<h:outputText value="#{ShelfView.selectedShelf.id}" />
+
+									<h:outputText value="ID do produto" />
+									<h:outputText value="$#{ShelfView.selectedShelf.productID}" />
+
+									<h:outputText value="Capacidade" />
+									<h:outputText value="$#{ShelfView.selectedShelf.capacity}" />
+
+									<h:outputText value="Preço de Aluguer" />
+									<h:outputText
+										value="$#{ShelfView.selectedShelf.locationRentalPrice}" />
+								</p:panelGrid>
+							</p:outputPanel>
+						</p:dialog>
 					</p:tab>
 				</p:tabView>
 			</h:form>
