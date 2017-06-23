@@ -51,7 +51,8 @@ public class ShelfView implements Serializable{
     }
     
     public String addShelf(){
-    	shelfService.addShelf();
+    	Shelf shelf = new Shelf(1 ,2,null,5.0);
+    	shelves.add(shelf);
     	return null;
     }
     
