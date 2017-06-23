@@ -23,9 +23,9 @@
 							selection="#{ProductView.selectedProduct}" rowKey="#{product.id}"
 							draggableColumns="true">
 							<f:facet name="header">
-								<p:commandButton value="Add" action="#{ProductView.addProduct()}"/>
-								<p:commandButton value="Edit" action="#{ProductView.editProduct()}"/>
-								<p:commandButton value="Delete" action="#{ProductView.deleteProduct(selectedProduct)}"/>
+								<p:commandButton value="Add" update = "ProductList" action="#{ProductView.addProduct()}"/>
+								<p:commandButton value="Edit" update = "ProductList" action="#{ProductView.editProduct()}"/>
+								<p:commandButton value="Delete" update = "ProductList" action="#{ProductView.deleteProduct()}"/>
 							</f:facet>
 							<p:column headerText="ID">
 								<h:outputText value="#{product.id}" />

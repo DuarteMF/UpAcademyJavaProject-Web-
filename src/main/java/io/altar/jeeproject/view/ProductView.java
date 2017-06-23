@@ -29,7 +29,8 @@ public class ProductView implements Serializable {
 //    	products = productService.showProducts();
 //    }
 	
-	private static final ArrayList<Product> products = new ArrayList<>();
+//	private static final List<Product> products = productService.showProducts();
+	private static final List<Product> products = new ArrayList<>();
      
     public List<Product> getProducts() {
         return products;
@@ -60,14 +61,11 @@ public class ProductView implements Serializable {
     }
     
     public String editProduct(){
-    	Product product = new Product(null ,"teste",1,6,5.0);
-    	productService.addProduct(product);
-    	products.add(product);
     	return null;
     }
     
-    public String deleteProduct(Product product){
-    	products.remove(product);
+    public String deleteProduct(){
+    	products.remove(selectedProduct);
     	return null;
     }
 }
