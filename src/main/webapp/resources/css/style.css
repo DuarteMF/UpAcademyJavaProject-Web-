@@ -12,3 +12,10 @@
 	padding-bottom:50px;
 	display:inline-block;
 }
+
+.label{
+	display: table-cell !important;
+	color: black !important;
+	border-radius: 0 !important;
+	vertical-align: middle !important;
+}

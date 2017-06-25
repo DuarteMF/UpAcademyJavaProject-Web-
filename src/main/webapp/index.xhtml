@@ -10,6 +10,7 @@
 <!-- template="CommonLayout.xhtml" -->
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h:outputStylesheet library = "css" name = "style.css"></h:outputStylesheet>
 </h:head>
 <h:body>
 	<ui:composition template="CommonLayout.xhtml">
@@ -23,7 +24,7 @@
 							selection="#{ProductView.selectedProduct}" rowKey="#{product.id}"
 							draggableColumns="true">
 							<f:facet name="header">
-								<p:commandButton value="Add" update = "ProductList" action="#{ProductView.addProduct()}"/>
+								<p:commandButton process="ProductList" value="Add" oncomplete="PF('productAdd').show()"/>
 								<p:commandButton value="Edit" update = "ProductList" action="#{ProductView.editProduct()}"/>
 								<p:commandButton value="Delete" update = "ProductList" action="#{ProductView.deleteProduct()}"/>
 							</f:facet>
@@ -52,11 +53,11 @@
 							<f:facet name="footer">
 								<p:commandButton process="ProductList"
 									update=":form:j_idt13:productDetail" icon="ui-icon-search"
-									value="View" oncomplete="PF('productDialog').show()" />
+									value="View" oncomplete="PF('productDisplay').show()" />
 							</f:facet>
 						</p:dataTable>
 
-						<p:dialog header="Product Info" widgetVar="productDialog"
+						<p:dialog header="Product Info" widgetVar="productDisplay"
 							modal="true" showEffect="fade" hideEffect="fade"
 							resizable="false">
 							<p:outputPanel id="productDetail" style="text-align:center;">
@@ -74,13 +75,41 @@
 										value="#{ProductView.selectedProduct.shelfIdLocation}" />
 
 									<h:outputText value="Desconto" />
-									<h:outputText value="$#{Product.selectedProduct.discount}" />
+									<h:outputText value="#{ProductView.selectedProduct.discount}%" />
 
 									<h:outputText value="IVA" />
-									<h:outputText value="$#{Product.selectedProduct.tax}" />
+									<h:outputText value="#{ProductView.selectedProduct.tax}%" />
 
 									<h:outputText value="Preço" />
-									<h:outputText value="$#{Product.selectedProduct.price}" />
+									<h:outputText value="#{ProductView.selectedProduct.salePrice}€" />
+								</p:panelGrid>
+							</p:outputPanel>
+						</p:dialog>
+						
+						<p:dialog header="Add Product Info" widgetVar="productAdd"
+							modal="true" showEffect="fade" hideEffect="fade"
+							resizable="false">
+							<p:outputPanel id="addProductDetail" style="text-align:center;">
+								<p:panelGrid columns="2"
+									columnClasses="label,value">
+									<h:outputText value="Nome" />
+									<p:inputText value="#{ProductView.productName}" required="true"/>
+
+									<h:outputText value="Prateleiras:" />
+									<h:inputText
+										value="#{ProductView.productShelfIdLocation}" />
+
+									<h:outputText value="Desconto" />
+									<h:inputText value="#{ProductView.productDiscount}" required="true"/>
+
+									<h:outputText value="IVA" />
+									<h:inputText value="#{ProductView.productTax}" required="true"/>
+
+									<h:outputText value="Preço" />
+									<h:inputText value="#{ProductView.productPrice}" required="true"/>
+									<f:facet name="footer">
+										<p:commandButton process="ProductList" value="Submit" update = ":form:j_idt13:ProductList" action="#{ProductView.addProduct()}" oncomplete="PF('productAdd').hide()"/>
+									</f:facet>
 								</p:panelGrid>
 							</p:outputPanel>
 						</p:dialog>
