@@ -5,15 +5,15 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import io.altar.jeeproject.model.Shelf;
 import io.altar.jeeproject.service.ShelfService;
 
-@ManagedBean(name="ShelfView")
+@Named("ShelfBean")
 @RequestScoped
-public class ShelfView implements Serializable{
+public class ShelfBean implements Serializable{
 	
 	/**
 	 * 
@@ -21,13 +21,13 @@ public class ShelfView implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private List<Shelf> shelves;
 	private Shelf selectedShelf;
+	private Shelf newShelf = new Shelf();
 	
 	@Inject ShelfService shelfService;
  
     @PostConstruct
     public void init() {
-    	shelves = shelfService.showShelves();
-    			
+    	shelves = shelfService.showEntities(shelfService.getShelfRepository());    			
     }
      
     public List<Shelf> getShelves() {
@@ -51,18 +51,16 @@ public class ShelfView implements Serializable{
     }
     
     public String addShelf(){
-    	Shelf shelf = new Shelf(1 ,2,null,5.0);
-    	shelves.add(shelf);
+    	shelfService.addEntity(shelfService.getShelfRepository(), newShelf);
     	return null;
     }
     
     public String editShelf(){
-    	shelfService.addShelf();
     	return null;
     }
     
     public String deleteShelf(){
-    	shelfService.addShelf();
+    	shelfService.removeEntity(shelfService.getShelfRepository(), selectedShelf);
     	return null;
     }
 }

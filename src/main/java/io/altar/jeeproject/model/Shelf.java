@@ -1,7 +1,5 @@
 package io.altar.jeeproject.model;
 
-import io.altar.jeeproject.repository.ShelfRepository;
-
 public class Shelf extends Entity{
 	private Integer location;
 	private Integer capacity;
@@ -40,12 +38,8 @@ public class Shelf extends Entity{
 		return this.locationRentalPrice;
 	}
 	
-	public Shelf(Integer location, Integer capacity, Integer productID, Double locationRentalPrice){
-		this.location = location;
-		this.capacity = capacity;
-		this.productID = productID;
-		this.locationRentalPrice = locationRentalPrice;
-		ShelfRepository.getInstance().addToList(this);
+	public Shelf(){
+//		ShelfRepository.getInstance().addToList(this);
 	}
 	
 	@Override

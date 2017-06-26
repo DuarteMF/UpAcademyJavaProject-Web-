@@ -1,0 +1,71 @@
+package io.altar.jeeproject.view;
+
+import java.io.Serializable;
+import java.util.List;
+
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import io.altar.jeeproject.model.Product;
+import io.altar.jeeproject.service.ProductService;
+
+@Named("ProductBean")
+@RequestScoped
+public class ProductBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Product selectedProduct;
+	
+	public String testing(){
+		return "1";
+	}
+	
+	private Product newProduct = new Product();
+
+	public Product getNewProduct() {
+		return newProduct;
+	}
+
+	public void setNewProduct(Product newProduct) {
+		this.newProduct = newProduct;
+	}
+
+	@Inject
+	private ProductService productService;
+
+
+	public List<Product> getProducts() {
+		return productService.showEntities(productService.getProductRepository());
+	}
+
+
+	public Product getSelectedProduct() {
+		return selectedProduct;
+	}
+
+	public void setSelectedProduct(Product selectedProduct) {
+		this.selectedProduct = selectedProduct;
+	}
+
+	public String addProduct() {
+		System.out.println(newProduct.toString());
+		productService.addEntity(productService.getProductRepository(), newProduct);
+		return null;
+	}
+
+	public String editProduct() {
+		System.out.println(2);
+		return null;
+	}
+
+	public String deleteProduct() {
+		System.out.println(3);
+		productService.removeEntity(productService.getProductRepository(), selectedProduct);
+//		products.remove(selectedProduct);
+		return null;
+	}
+}

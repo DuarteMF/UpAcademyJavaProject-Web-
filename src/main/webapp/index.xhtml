@@ -10,49 +10,52 @@
 <!-- template="CommonLayout.xhtml" -->
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h:outputStylesheet library = "css" name = "style.css"></h:outputStylesheet>
 </h:head>
 <h:body>
 	<ui:composition template="CommonLayout.xhtml">
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
 		<ui:define name="content">
 			<h:form id="form">
-				<p:tabView>
+				<p:tabView id="tabs">
 					<p:tab title="Produtos">
 						<p:growl id="msgs" showDetail="true" />
-						<p:dataTable id="ProductList" var="product"
-							value="#{ProductView.products}" selectionMode="single"
-							selection="#{ProductView.selectedProduct}" rowKey="#{product.id}"
+						<p:dataTable id="ProductList" var="listProduct"
+							value="#{ProductBean.getProducts()}" selectionMode="single"
+							selection="#{ProductBean.selectedProduct}" rowKey="#{listProduct.id}"
 							draggableColumns="true">
 							<f:facet name="header">
-								<p:commandButton process="ProductList" value="Add" oncomplete="PF('productAdd').show()"/>
-								<p:commandButton value="Edit" update = "ProductList" action="#{ProductView.editProduct()}"/>
-								<p:commandButton value="Delete" update = "ProductList" action="#{ProductView.deleteProduct()}"/>
+								<p:commandButton process="ProductList" value="Add"
+									oncomplete="PF('productAdd').show()" />
+								<p:commandButton value="Edit" update="ProductList"
+									action="#{ProductBean.editProduct()}" />
+								<p:commandButton value="Delete" update="ProductList"
+									action="#{ProductBean.deleteProduct()}" />
 							</f:facet>
 							<p:column headerText="ID">
-								<h:outputText value="#{product.id}" />
+								<h:outputText value="#{listProduct.id}" />
 							</p:column>
 
 							<p:column headerText="Nome">
-								<h:outputText value="#{product.name}" />
+								<h:outputText value="#{listProduct.name}" />
 							</p:column>
 
 							<p:column headerText="Prateleiras">
-								<h:outputText value="#{product.shelfIdLocation}" />
+								<h:outputText value="#{listProduct.shelfIdLocation}" />
 							</p:column>
 
 							<p:column headerText="Desconto">
-								<h:outputText value="#{product.discount}" />
+								<h:outputText value="#{listProduct.discount}" />
 							</p:column>
 
 							<p:column headerText="IVA">
-								<h:outputText value="#{product.tax}" />
+								<h:outputText value="#{listProduct.tax}" />
 							</p:column>
 							<p:column headerText="Preço">
-								<h:outputText value="#{product.salePrice}" />
+								<h:outputText value="#{listProduct.salePrice}" />
 							</p:column>
 							<f:facet name="footer">
 								<p:commandButton process="ProductList"
-									update=":form:j_idt13:productDetail" icon="ui-icon-search"
+									update=":form:tabs:productDetail" icon="ui-icon-search"
 									value="View" oncomplete="PF('productDisplay').show()" />
 							</f:facet>
 						</p:dataTable>
@@ -62,55 +65,58 @@
 							resizable="false">
 							<p:outputPanel id="productDetail" style="text-align:center;">
 								<p:panelGrid columns="2"
-									rendered="#{not empty ProductView.selectedProduct}"
+									rendered="#{not empty ProductBean.selectedProduct}"
 									columnClasses="label,value">
 									<h:outputText value="ID:" />
-									<h:outputText value="#{ProductView.selectedProduct.id}" />
+									<h:outputText value="#{ProductBean.selectedProduct.id}" />
 
 									<h:outputText value="Nome" />
-									<h:outputText value="#{ProductView.selectedProduct.name}" />
+									<h:outputText value="#{ProductBean.selectedProduct.name}" />
 
 									<h:outputText value="Prateleiras:" />
 									<h:outputText
-										value="#{ProductView.selectedProduct.shelfIdLocation}" />
+										value="#{ProductBean.selectedProduct.shelfIdLocation}" />
 
 									<h:outputText value="Desconto" />
-									<h:outputText value="#{ProductView.selectedProduct.discount}%" />
+									<h:outputText value="#{ProductBean.selectedProduct.discount}%" />
 
 									<h:outputText value="IVA" />
-									<h:outputText value="#{ProductView.selectedProduct.tax}%" />
+									<h:outputText value="#{ProductBean.selectedProduct.tax}%" />
 
 									<h:outputText value="Preço" />
-									<h:outputText value="#{ProductView.selectedProduct.salePrice}€" />
+									<h:outputText value="#{ProductBean.selectedProduct.salePrice}€" />
 								</p:panelGrid>
 							</p:outputPanel>
 						</p:dialog>
-						
+
 						<p:dialog header="Add Product Info" widgetVar="productAdd"
 							modal="true" showEffect="fade" hideEffect="fade"
 							resizable="false">
 							<p:outputPanel id="addProductDetail" style="text-align:center;">
-								<p:panelGrid columns="2"
-									columnClasses="label,value">
+								<p:panelGrid columns="2" columnClasses="label,value">
 									<h:outputText value="Nome" />
-									<p:inputText value="#{ProductView.productName}" required="true"/>
+									<p:inputText styleClass="input" value="#{ProductBean.newProduct.name}"
+										required="true" />
 
 									<h:outputText value="Prateleiras:" />
-									<h:inputText
-										value="#{ProductView.productShelfIdLocation}" />
+									<h:inputText styleClass="input" value="#{ProductBean.newProduct.shelfIdLocation}" />
 
 									<h:outputText value="Desconto" />
-									<h:inputText value="#{ProductView.productDiscount}" required="true"/>
+									<h:inputText styleClass="input" value="#{ProductBean.newProduct.discount}"
+										required="true" />
 
 									<h:outputText value="IVA" />
-									<h:inputText value="#{ProductView.productTax}" required="true"/>
+									<h:inputText styleClass="input" value="#{ProductBean.newProduct.tax}"
+										required="true" />
 
 									<h:outputText value="Preço" />
-									<h:inputText value="#{ProductView.productPrice}" required="true"/>
-									<f:facet name="footer">
-										<p:commandButton process="ProductList" value="Submit" update = ":form:j_idt13:ProductList" action="#{ProductView.addProduct()}" oncomplete="PF('productAdd').hide()"/>
-									</f:facet>
+									<h:inputText styleClass="input" value="#{ProductBean.newProduct.salePrice}"
+										required="true" />
 								</p:panelGrid>
+								<p:commandButton process="ProductList" value="Submit"
+											update=":form:tabs:ProductList"
+											action="#{ProductBean.testing()}"
+											oncomplete="PF('productAdd').hide()" />
 							</p:outputPanel>
 						</p:dialog>
 					</p:tab>
@@ -118,13 +124,15 @@
 
 
 					<p:tab title="Prateleiras">
-						<p:dataTable id="ShelfList" var="shelf" value="#{ShelfView.shelves}"
-							selectionMode="single" selection="#{ShelfView.selectedShelf}"
-							rowKey="#{shelf.id}" draggableColumns="true">							
+						<p:dataTable id="ShelfList" var="shelf"
+							value="#{ShelfBean.shelves}" selectionMode="single"
+							selection="#{ShelfBean.selectedShelf}" rowKey="#{shelf.id}"
+							draggableColumns="true">
 							<f:facet name="header">
-								<p:commandButton value="Add" action="#{ShelfView.addShelf()}"/>
-								<p:commandButton value="Edit" action="#{ShelfView.editShelf()}"/>
-								<p:commandButton value="Delete" action="#{ShelfView.deleteShelf()}"/>
+								<p:commandButton value="Add" action="#{ShelfBean.addShelf()}" />
+								<p:commandButton value="Edit" action="#{ShelfBean.editShelf()}" />
+								<p:commandButton value="Delete"
+									action="#{ShelfBean.deleteShelf()}" />
 							</f:facet>
 							<p:column headerText="ID">
 								<h:outputText value="#{shelf.id}" />
@@ -147,7 +155,7 @@
 							</p:column>
 							<f:facet name="footer">
 								<p:commandButton process="ShelfList"
-									update=":form:j_idt13:shelfDetail" icon="ui-icon-search"
+									update=":form:tabs:shelfDetail" icon="ui-icon-search"
 									value="View" oncomplete="PF('shelfDialog').show()" />
 							</f:facet>
 						</p:dataTable>
@@ -156,20 +164,20 @@
 							showEffect="fade" hideEffect="fade" resizable="false">
 							<p:outputPanel id="shelfDetail" style="text-align:center;">
 								<p:panelGrid columns="2"
-									rendered="#{not empty ShelfView.selectedShelf}"
+									rendered="#{not empty ShelfBean.selectedShelf}"
 									columnClasses="label,value">
 									<h:outputText value="ID:" />
-									<h:outputText value="#{ShelfView.selectedShelf.id}" />
+									<h:outputText value="#{ShelfBean.selectedShelf.id}" />
 
 									<h:outputText value="ID do produto" />
-									<h:outputText value="$#{ShelfView.selectedShelf.productID}" />
+									<h:outputText value="$#{ShelfBean.selectedShelf.productID}" />
 
 									<h:outputText value="Capacidade" />
-									<h:outputText value="$#{ShelfView.selectedShelf.capacity}" />
+									<h:outputText value="$#{ShelfBean.selectedShelf.capacity}" />
 
 									<h:outputText value="Preço de Aluguer" />
 									<h:outputText
-										value="$#{ShelfView.selectedShelf.locationRentalPrice}" />
+										value="$#{ShelfBean.selectedShelf.locationRentalPrice}" />
 								</p:panelGrid>
 							</p:outputPanel>
 						</p:dialog>

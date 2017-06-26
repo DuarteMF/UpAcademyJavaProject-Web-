@@ -1,26 +1,28 @@
 package io.altar.jeeproject.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import javax.enterprise.context.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import io.altar.jeeproject.model.Shelf;
 import io.altar.jeeproject.repository.ShelfRepository;
 
-@ManagedBean(name = "shelfService")
+@Named("shelfService")
 @ApplicationScoped
-public class ShelfService {
-	private ShelfRepository shelfList = ShelfRepository.getInstance();
-
-	public List<Shelf> showShelves() {
-		List<Shelf> list = new ArrayList<Shelf>((Collection<Shelf>) shelfList.values());
-		return list;
-	}
+public class ShelfService extends EntityService<Shelf>{
+	@Inject
+	private ShelfRepository shelfList;
 	
-	public void addShelf(){
-		shelfList.addToList(new Shelf(1 ,2,null,5.0));
+	public ShelfRepository getShelfRepository(){
+		return shelfList;
 	}
+
+//	public List<Shelf> showShelves() {
+//		List<Shelf> list = new ArrayList<Shelf>((Collection<Shelf>) shelfList.values());
+//		return list;
+//	}
+//	
+//	public void addShelf(){
+//		shelfList.addToList(new Shelf(1 ,2,null,5.0));
+//	}
 }

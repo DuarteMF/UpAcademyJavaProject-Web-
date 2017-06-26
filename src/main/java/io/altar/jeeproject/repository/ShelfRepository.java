@@ -1,28 +1,28 @@
 package io.altar.jeeproject.repository;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
+
 import io.altar.jeeproject.model.Shelf;
 
+@Named("shelfRepository")
+@ApplicationScoped
 public class ShelfRepository extends EntityRepository<Shelf> {
-	private static final ShelfRepository INSTANCE = new ShelfRepository();
 
-	private ShelfRepository() {}
-
-	public static ShelfRepository getInstance() {
-		return INSTANCE;
-	}
+//	private ShelfRepository() {}
 
 	public void alterElement(Integer id, Integer location, Integer capacity, Integer productID, Double price) {
-		((Shelf) ShelfRepository.getInstance().get(id)).setLocation(location);
-		((Shelf) ShelfRepository.getInstance().get(id)).setCapacity(capacity);
-		((Shelf) ShelfRepository.getInstance().get(id)).setProductID(productID);
-		((Shelf) ShelfRepository.getInstance().get(id)).setLocationRentalPrice(price);
+		((Shelf) get(id)).setLocation(location);
+		((Shelf) get(id)).setCapacity(capacity);
+		((Shelf) get(id)).setProductID(productID);
+		((Shelf) get(id)).setLocationRentalPrice(price);
 	}
 	
 	public void toggleProductPresent(Integer id, Integer productID) {
-		if(((Shelf) ShelfRepository.getInstance().get(id)).getProductID()==null){
-			((Shelf) ShelfRepository.getInstance().get(id)).setProductID(productID);
+		if(((Shelf) get(id)).getProductID()==null){
+			((Shelf) get(id)).setProductID(productID);
 		}else{
-			((Shelf) ShelfRepository.getInstance().get(id)).setProductID(null);
+			((Shelf) get(id)).setProductID(null);
 		}
 	}
 }

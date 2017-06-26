@@ -2,14 +2,12 @@ package io.altar.jeeproject.model;
 
 import java.util.ArrayList;
 
-import io.altar.jeeproject.repository.ProductRepository;
-
 public class Product extends Entity{
-	private ArrayList<Integer> shelfIdLocation;
-	private String name;
-	private Integer discount;
-	private Integer tax;
-	private Double salePrice;
+	private ArrayList<Integer> shelfIdLocation = new ArrayList<>();
+	private String name = "name";
+	private Integer discount = 0;
+	private Integer tax = 0;
+	private Double salePrice = 0.0;
 	
 	public void setShelfIdLocation(ArrayList<Integer> shelfIdLocation){
 		this.shelfIdLocation = shelfIdLocation;
@@ -51,13 +49,8 @@ public class Product extends Entity{
 		return this.salePrice;
 	}
 	
-	public Product(ArrayList<Integer> shelfIdLocation, String name, Integer discount, Integer tax, Double salePrice){
-		this.shelfIdLocation = shelfIdLocation;
-		this.name = name;
-		this.discount = discount;
-		this.tax = tax;
-		this.salePrice = salePrice;
-		ProductRepository.getInstance().addToList(this);
+	public Product(){
+//		ProductRepository.getInstance().addToList(this);
 	}
 	
 	@Override
