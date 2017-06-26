@@ -63,9 +63,7 @@ public class ProductBean implements Serializable {
 
 
 	public String addProduct() {
-//		products.add(new Product());
 		productService.addEntity(productService.getProductRepository(), newProduct);
-//		productService.addProduct(newProduct);
 		return null;
 	}
 
