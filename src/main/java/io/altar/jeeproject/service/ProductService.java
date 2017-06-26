@@ -10,8 +10,10 @@ import io.altar.jeeproject.repository.ProductRepository;
 @Named("productService")
 @RequestScoped
 public class ProductService extends EntityService<Product>{
+//public class ProductService{
 	@Inject
 	private ProductRepository productList;
+//	private ProductRepository productList = ProductRepository.getInstance();
 	
 	public ProductRepository getProductRepository(){
 		return productList;

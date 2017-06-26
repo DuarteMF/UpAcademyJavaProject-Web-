@@ -18,10 +18,15 @@ public class ProductBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private Product selectedProduct;
 	
-	public String testing(){
-		return "1";
+	public Product getSelectedProduct() {
+		return selectedProduct;
+	}
+	
+	public void setSelectedProduct(Product selectedProduct) {
+		this.selectedProduct = selectedProduct;
 	}
 	
 	private Product newProduct = new Product();
@@ -36,24 +41,31 @@ public class ProductBean implements Serializable {
 
 	@Inject
 	private ProductService productService;
-
+	
+//	private static List<Product> products = new ArrayList<>();
 
 	public List<Product> getProducts() {
 		return productService.showEntities(productService.getProductRepository());
+//		return productService.showProducts();
 	}
 
+//	public static List<Product> getProducts() {
+//		return products;
+//	}
+//
+//	public static void setProducts(List<Product> products) {
+//		ProductBean.products = products;
+//	}
+//
+//	public Product getSelectedProduct() {
+//		return selectedProduct;
+//	}
 
-	public Product getSelectedProduct() {
-		return selectedProduct;
-	}
-
-	public void setSelectedProduct(Product selectedProduct) {
-		this.selectedProduct = selectedProduct;
-	}
 
 	public String addProduct() {
-		System.out.println(newProduct.toString());
+//		products.add(new Product());
 		productService.addEntity(productService.getProductRepository(), newProduct);
+//		productService.addProduct(newProduct);
 		return null;
 	}
 
@@ -65,6 +77,7 @@ public class ProductBean implements Serializable {
 	public String deleteProduct() {
 		System.out.println(3);
 		productService.removeEntity(productService.getProductRepository(), selectedProduct);
+//		productService.removeProduct(selectedProduct);
 //		products.remove(selectedProduct);
 		return null;
 	}
