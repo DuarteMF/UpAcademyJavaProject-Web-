@@ -75,10 +75,7 @@ public class ProductBean implements Serializable {
 	}
 
 	public String deleteProduct() {
-		System.out.println(3);
 		productService.removeEntity(productService.getProductRepository(), selectedProduct);
-//		productService.removeProduct(selectedProduct);
-//		products.remove(selectedProduct);
 		return null;
 	}
 }

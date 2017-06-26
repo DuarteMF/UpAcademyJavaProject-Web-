@@ -1,5 +1,6 @@
 package io.altar.jeeproject.repository;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
@@ -15,10 +16,10 @@ public class ProductRepository extends EntityRepository<Product> {
 //	public static ProductRepository getInstance() {
 //		return INSTANCE;
 //	}
-//	@PostConstruct
-//	public void init(){
-//		addToList(new Product());
-//	}
+	@PostConstruct
+	public void init(){
+		addToList(new Product());
+	}
 
 	public void alterElement(Integer id, String shelf, String name, Integer discount, Integer tax, Double price) {
 		((Product) get(id)).setShelfIdLocation(shelf);

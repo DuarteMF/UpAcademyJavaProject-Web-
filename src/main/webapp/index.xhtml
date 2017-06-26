@@ -124,7 +124,9 @@
 							modal="true" showEffect="fade" hideEffect="fade"
 							resizable="false">
 							<p:outputPanel id="editProductDetail" style="text-align:center;">
-								<p:panelGrid columns="2" columnClasses="label,value">
+								<p:panelGrid columns="2"
+									rendered="#{not empty ProductBean.selectedProduct}"
+									columnClasses="label,value">
 									<h:outputText value="Nome" />
 									<p:inputText styleClass="input"
 										value="#{ProductBean.selectedProduct.name}" required="true" />
@@ -135,7 +137,8 @@
 
 									<h:outputText value="Desconto" />
 									<h:inputText styleClass="input"
-										value="#{ProductBean.selectedProduct.discount}" required="true" />
+										value="#{ProductBean.selectedProduct.discount}"
+										required="true" />
 
 									<h:outputText value="IVA" />
 									<h:inputText styleClass="input"
@@ -143,7 +146,8 @@
 
 									<h:outputText value="Preço" />
 									<h:inputText styleClass="input"
-										value="#{ProductBean.selectedProduct.salePrice}" required="true" />
+										value="#{ProductBean.selectedProduct.salePrice}"
+										required="true" />
 								</p:panelGrid>
 								<p:commandButton id="EditSubmit" 
 									value="Submit" update=":form:tabs:ProductList"
