@@ -1,9 +1,9 @@
 package io.altar.jeeproject.model;
 
 public class Product extends Entity{
-	private String shelfIdLocation ="";
+	private String shelfIdLocation ="teste";
 //	private ArrayList<Integer> shelfIdLocation = new ArrayList<>();
-	private String name = "name";
+	private String name = "nome";
 	private Integer discount = 0;
 	private Integer tax = 0;
 	private Double salePrice = 0.0;

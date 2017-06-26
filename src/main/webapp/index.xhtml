@@ -26,8 +26,7 @@
 							<f:facet name="header">
 								<p:commandButton  value="Add"
 									oncomplete="PF('productAdd').show()" />
-								<p:commandButton value="Edit" update="ProductList"
-									action="#{ProductBean.editProduct()}" />
+								<p:commandButton value="Edit" oncomplete="PF('productEdit').show()" />
 								<p:commandButton value="Delete" update="ProductList"
 									action="#{ProductBean.deleteProduct()}" />
 							</f:facet>
@@ -114,10 +113,42 @@
 									<h:inputText styleClass="input"
 										value="#{ProductBean.newProduct.salePrice}" required="true" />
 								</p:panelGrid>
-								<p:commandButton id="Submit" 
+								<p:commandButton id="AddSubmit" 
 									value="Submit" update=":form:tabs:ProductList"
 									action="#{ProductBean.addProduct()}"
 									oncomplete="PF('productAdd').hide()" />
+							</p:outputPanel>
+						</p:dialog>
+						
+						<p:dialog header="Edit Product Info" widgetVar="productEdit"
+							modal="true" showEffect="fade" hideEffect="fade"
+							resizable="false">
+							<p:outputPanel id="editProductDetail" style="text-align:center;">
+								<p:panelGrid columns="2" columnClasses="label,value">
+									<h:outputText value="Nome" />
+									<p:inputText styleClass="input"
+										value="#{ProductBean.selectedProduct.name}" required="true" />
+
+									<h:outputText value="Prateleiras:" />
+									<h:inputText styleClass="input"
+										value="#{ProductBean.selectedProduct.shelfIdLocation}" />
+
+									<h:outputText value="Desconto" />
+									<h:inputText styleClass="input"
+										value="#{ProductBean.selectedProduct.discount}" required="true" />
+
+									<h:outputText value="IVA" />
+									<h:inputText styleClass="input"
+										value="#{ProductBean.selectedProduct.tax}" required="true" />
+
+									<h:outputText value="Preço" />
+									<h:inputText styleClass="input"
+										value="#{ProductBean.selectedProduct.salePrice}" required="true" />
+								</p:panelGrid>
+								<p:commandButton id="EditSubmit" 
+									value="Submit" update=":form:tabs:ProductList"
+									action="#{ProductBean.editProduct()}"
+									oncomplete="PF('productEdit').hide()" />
 							</p:outputPanel>
 						</p:dialog>
 					</p:tab>
@@ -184,10 +215,6 @@
 						</p:dialog>
 					</p:tab>
 				</p:tabView>
-
-<!-- 				<p:commandButton id="teste" value="Teste" -->
-<!-- 					actionListener="#{TestBean.testing()}" update="msgs"></p:commandButton> -->
-<!-- 				<p:growl id="msgs" showDetail="true" life="500000"/> -->
 			</h:form>
 		</ui:define>
 	</ui:composition>
