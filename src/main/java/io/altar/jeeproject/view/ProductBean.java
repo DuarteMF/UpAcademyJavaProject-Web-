@@ -68,7 +68,8 @@ public class ProductBean implements Serializable {
 	}
 
 	public String editProduct() {
-		System.out.println(2);
+		System.out.println(selectedProduct.toString());
+		productService.editProduct(selectedProduct);
 		return null;
 	}
 

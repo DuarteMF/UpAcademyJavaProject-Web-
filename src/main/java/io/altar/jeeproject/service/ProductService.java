@@ -19,6 +19,10 @@ public class ProductService extends EntityService<Product>{
 		return productList;
 	}
 	
+	public void editProduct(Product product){
+		productList.alterElement(product.getId(), product.getShelfIdLocation(), product.getName(), product.getDiscount(), product.getTax(), product.getSalePrice());
+	}
+	
 //	public List<Product> showProducts() {
 //        List<Product> list = new ArrayList<Product>((Collection<Product>)productList.values());         
 //        return list;
