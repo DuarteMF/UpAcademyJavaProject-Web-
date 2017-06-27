@@ -19,7 +19,7 @@ public class ShelfBean implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private List<Shelf> shelves;
+
 	private Shelf selectedShelf;
 	private Shelf newShelf = new Shelf();
 	
