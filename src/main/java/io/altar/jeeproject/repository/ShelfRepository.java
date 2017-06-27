@@ -9,8 +9,6 @@ import io.altar.jeeproject.model.Shelf;
 @ApplicationScoped
 public class ShelfRepository extends EntityRepository<Shelf> {
 
-//	private ShelfRepository() {}
-
 	public void alterElement(Integer id, Integer location, Integer capacity, Integer productID, Double price) {
 		((Shelf) get(id)).setLocation(location);
 		((Shelf) get(id)).setCapacity(capacity);

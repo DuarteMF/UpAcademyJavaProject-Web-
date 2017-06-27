@@ -1,10 +1,10 @@
 package io.altar.jeeproject.model;
 
 public class Shelf extends Entity{
-	private Integer location;
-	private Integer capacity;
-	private Integer productID;
-	private Double locationRentalPrice;
+	private Integer location = 0;
+	private Integer capacity = 0;
+	private Integer productID = null;
+	private Double locationRentalPrice = 0.0;
 	
 	public void setLocation(Integer location){
 		this.location = location;

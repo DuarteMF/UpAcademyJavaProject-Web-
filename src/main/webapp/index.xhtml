@@ -60,7 +60,7 @@
 							</f:facet>
 						</p:dataTable>
 
-						<p:dialog header="Product Info" widgetVar="productDisplay"
+						<p:dialog header="Informação do Produto" widgetVar="productDisplay"
 							modal="true" showEffect="fade" hideEffect="fade"
 							resizable="false">
 							<p:outputPanel id="productDetail" style="text-align:center;">
@@ -89,7 +89,7 @@
 							</p:outputPanel>
 						</p:dialog>
 
-						<p:dialog header="Add Product Info" widgetVar="productAdd"
+						<p:dialog header="Adicionar Informação do Produto" widgetVar="productAdd"
 							modal="true" showEffect="fade" hideEffect="fade"
 							resizable="false">
 							<p:outputPanel id="addProductDetail" style="text-align:center;">
@@ -114,14 +114,14 @@
 									<p:inputText styleClass="input"
 										value="#{ProductBean.newProduct.salePrice}" required="true" />
 								</p:panelGrid>
-								<p:commandButton id="AddSubmit" value="Submit"
+								<p:commandButton id="ShelfAddSubmit" value="Submit"
 									update=":form:tabs:ProductList"
 									action="#{ProductBean.addProduct()}"
 									oncomplete="PF('productAdd').hide()" />
 							</p:outputPanel>
 						</p:dialog>
 
-						<p:dialog header="Edit Product Info" widgetVar="productEdit"
+						<p:dialog header="Editar Informação do Produto" widgetVar="productEdit"
 							modal="true" showEffect="fade" hideEffect="fade"
 							resizable="false">
 							<p:outputPanel id="editProductDetail" style="text-align:center;">
@@ -129,14 +129,6 @@
 									rendered="#{not empty ProductBean.selectedProduct}"
 									columnClasses="label,value">
 									<h:outputText value="Nome" />
-									<!-- <p:cellEditor>
-										<f:facet name="output">
-											<h:outputText value="#{ProductBean.selectedProduct.name}" />
-										</f:facet>
-										<f:facet name="input">
-											<p:inputText id="modelInput" value="#{ProductBean.selectedProduct.name}" />
-										</f:facet>
-									</p:cellEditor> -->
 									<p:inputText styleClass="input" readonly="false"
 										value="#{ProductBean.selectedProduct.name}" required="true" />
 
@@ -158,7 +150,7 @@
 										value="#{ProductBean.selectedProduct.salePrice}"
 										required="true" />
 								</p:panelGrid>
-								<p:commandButton id="EditSubmit" value="Submit"
+								<p:commandButton id="ProductEditSubmit" value="Submit"
 									update=":form:tabs:ProductList"
 									action="#{ProductBean.editProduct()}"
 									oncomplete="PF('productEdit').hide()" />
@@ -207,7 +199,7 @@
 							</f:facet>
 						</p:dataTable>
 
-						<p:dialog header="Shelf Info" widgetVar="shelfDialog" modal="true"
+						<p:dialog header="Imformação da Prateleira" widgetVar="shelfDialog" modal="true"
 							showEffect="fade" hideEffect="fade" resizable="false">
 							<p:outputPanel id="shelfDetail" style="text-align:center;">
 								<p:panelGrid columns="2"
@@ -229,76 +221,58 @@
 							</p:outputPanel>
 						</p:dialog>
 						
-						<p:dialog header="Add Shelf Info" widgetVar="shelfAdd"
+						<p:dialog header="Adicionar Informação da Prateleira" widgetVar="shelfAdd"
 							modal="true" showEffect="fade" hideEffect="fade"
 							resizable="false">
 							<p:outputPanel id="addShelfDetail" style="text-align:center;">
 								<p:panelGrid columns="2" columnClasses="label,value">
-									<h:outputText value="Nome" />
+									<h:outputText value="Localização" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.newShelf.name}" required="true" />
+										value="#{ShelfBean.newShelf.location}" required="true" />
 
-									<h:outputText value="Prateleiras:" />
+									<h:outputText value="Capacidade:" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.newShelf.shelfIdLocation}" />
+										value="#{ShelfBean.newShelf.capacity}" />
 
-									<h:outputText value="Desconto" />
+									<h:outputText value="ID do Produto" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.newShelf.discount}" required="true" />
+										value="#{ShelfBean.newShelf.productID}" required="true" />
 
-									<h:outputText value="IVA" />
+									<h:outputText value="Preço de Aluguer" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.newShelf.tax}" required="true" />
-
-									<h:outputText value="Preço" />
-									<p:inputText styleClass="input"
-										value="#{ShelfBean.newShelf.salePrice}" required="true" />
+										value="#{ShelfBean.newShelf.locationRentalPrice}" required="true" />
 								</p:panelGrid>
-								<p:commandButton id="AddSubmit" value="Submit"
+								<p:commandButton id="ProductAddSubmit" value="Submit"
 									update=":form:tabs:ShelfList"
 									action="#{ShelfBean.addShelf()}"
 									oncomplete="PF('shelfAdd').hide()" />
 							</p:outputPanel>
 						</p:dialog>
 
-						<p:dialog header="Edit Shelf Info" widgetVar="shelfEdit"
+						<p:dialog header="Editar Informação da Prateleira" widgetVar="shelfEdit"
 							modal="true" showEffect="fade" hideEffect="fade"
 							resizable="false">
 							<p:outputPanel id="editShelfDetail" style="text-align:center;">
 								<p:panelGrid columns="2"
 									rendered="#{not empty ShelfBean.selectedShelf}"
 									columnClasses="label,value">
-									<h:outputText value="Nome" />
-									<!-- <p:cellEditor>
-										<f:facet name="output">
-											<h:outputText value="#{ShelfBean.selectedShelf.name}" />
-										</f:facet>
-										<f:facet name="input">
-											<p:inputText id="modelInput" value="#{ShelfBean.selectedShelf.name}" />
-										</f:facet>
-									</p:cellEditor> -->
-									<p:inputText styleClass="input" readonly="false"
-										value="#{ShelfBean.selectedShelf.name}" required="true" />
-
-									<h:outputText value="Prateleiras:" />
+									<h:outputText value="Localização" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.selectedShelf.shelfIdLocation}" />
+										value="#{ShelfBean.selectedShelf.location}" required="true" />
 
-									<h:outputText value="Desconto" />
+									<h:outputText value="Capacidade:" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.selectedShelf.discount}"
-										required="true" />
+										value="#{ShelfBean.selectedShelf.capacity}" />
 
-									<h:outputText value="IVA" />
+									<h:outputText value="ID do Produto" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.selectedShelf.tax}" required="true" />
+										value="#{ShelfBean.selectedShelf.productID}" required="true" />
 
-									<h:outputText value="Preço" />
+									<h:outputText value="Preço de Aluguer" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.selectedShelf.salePrice}"
-										required="true" />
+										value="#{ShelfBean.selectedShelf.locationRentalPrice}" required="true" />
 								</p:panelGrid>
-								<p:commandButton id="EditSubmit" value="Submit"
+								<p:commandButton id="ShelfEditSubmit" value="Submit"
 									update=":form:tabs:ShelfList"
 									action="#{ShelfBean.editShelf()}"
 									oncomplete="PF('shelfEdit').hide()" />

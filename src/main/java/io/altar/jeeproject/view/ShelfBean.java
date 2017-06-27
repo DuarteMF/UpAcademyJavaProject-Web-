@@ -3,7 +3,6 @@ package io.altar.jeeproject.view;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -21,33 +20,30 @@ public class ShelfBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Shelf selectedShelf;
-	private Shelf newShelf = new Shelf();
 	
-	@Inject ShelfService shelfService;
- 
-    @PostConstruct
-    public void init() {
-    	shelves = shelfService.showEntities(shelfService.getShelfRepository());    			
-    }
-     
-    public List<Shelf> getShelves() {
-        return shelves;
-    }
-    
-    public ShelfService getShelfService() {
-        return shelfService;
-    }
- 
-    public void setShelfService(ShelfService shelfService) {
-        this.shelfService = shelfService;
-    }
-    
-    public Shelf getSelectedShelf() {
+	public Shelf getSelectedShelf() {
         return selectedShelf;
     }
  
     public void setSelectedShelf(Shelf selectedShelf) {
         this.selectedShelf = selectedShelf;
+    }
+	
+	private Shelf newShelf = new Shelf();
+	
+	public Shelf getNewShelf() {
+		return newShelf;
+	}
+
+	public void setNewShelf(Shelf newShelf) {
+		this.newShelf = newShelf;
+	}
+
+	@Inject
+	private ShelfService shelfService;
+     
+    public List<Shelf> getShelves() {
+        return shelfService.showEntities(shelfService.getShelfRepository());
     }
     
     public String addShelf(){
@@ -56,6 +52,8 @@ public class ShelfBean implements Serializable{
     }
     
     public String editShelf(){
+		System.out.println(selectedShelf.toString());
+		shelfService.editShelf(selectedShelf);
     	return null;
     }
     

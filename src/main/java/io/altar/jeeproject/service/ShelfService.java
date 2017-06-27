@@ -7,7 +7,7 @@ import javax.inject.Named;
 import io.altar.jeeproject.model.Shelf;
 import io.altar.jeeproject.repository.ShelfRepository;
 
-@Named("shelfService")
+@Named("ShelfService")
 @ApplicationScoped
 public class ShelfService extends EntityService<Shelf>{
 	@Inject
@@ -16,13 +16,8 @@ public class ShelfService extends EntityService<Shelf>{
 	public ShelfRepository getShelfRepository(){
 		return shelfList;
 	}
-
-//	public List<Shelf> showShelves() {
-//		List<Shelf> list = new ArrayList<Shelf>((Collection<Shelf>) shelfList.values());
-//		return list;
-//	}
-//	
-//	public void addShelf(){
-//		shelfList.addToList(new Shelf(1 ,2,null,5.0));
-//	}
+	
+	public void editShelf(Shelf shelf){
+		shelfList.alterElement(shelf.getId(), shelf.getLocation(), shelf.getCapacity(), shelf.getProductID(), shelf.getLocationRentalPrice());
+	}
 }

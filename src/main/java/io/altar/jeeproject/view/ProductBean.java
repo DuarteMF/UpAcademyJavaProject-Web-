@@ -41,26 +41,10 @@ public class ProductBean implements Serializable {
 
 	@Inject
 	private ProductService productService;
-	
-//	private static List<Product> products = new ArrayList<>();
 
 	public List<Product> getProducts() {
 		return productService.showEntities(productService.getProductRepository());
-//		return productService.showProducts();
 	}
-
-//	public static List<Product> getProducts() {
-//		return products;
-//	}
-//
-//	public static void setProducts(List<Product> products) {
-//		ProductBean.products = products;
-//	}
-//
-//	public Product getSelectedProduct() {
-//		return selectedProduct;
-//	}
-
 
 	public String addProduct() {
 		productService.addEntity(productService.getProductRepository(), newProduct);
