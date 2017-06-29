@@ -24,11 +24,14 @@
 							selection="#{ProductBean.selectedProduct}"
 							rowKey="#{listProduct.id}" draggableColumns="true">
 							<f:facet name="header">
-								<p:commandButton value="Add" update=":tabs:ProductAddDialog:addProductDetail"
+								<p:commandButton value="Adicionar" update=":tabs:ProductAddDialog:addProductDetail"
 									oncomplete="PF('productAdd').show()" />
-								<p:commandButton value="Edit" update=":tabs:ProductEditDialog:editProductDetail"
-									oncomplete="PF('productEdit').show()" />
-								<p:commandButton value="Delete" update=":tabs:ProductTable:ProductList"
+								<p:commandButton value="Editar"
+									update=":tabs:ProductEditDialog:editProductDetail"
+									oncomplete="PF('productEdit').show()" >
+									<f:setPropertyActionListener target="#{ProductBean.editedProduct}" value="#{ProductBean.selectedProduct}" />
+									</p:commandButton>
+								<p:commandButton value="Eliminar" update=":tabs:ProductTable:ProductList"
 									action="#{ProductBean.deleteProduct()}" />
 							</f:facet>
 							<p:column headerText="ID">
@@ -55,8 +58,9 @@
 							</p:column>
 							<f:facet name="footer">
 								<p:commandButton 
-									icon="ui-icon-search" value="View"
-									oncomplete="PF('productDisplay').show()" />
+									icon="ui-icon-search" value="Mostrar"
+									oncomplete="PF('productDisplay').show()"
+									action="#{ProductBean.display()}" />
 							</f:facet>
 						</p:dataTable>
 					</h:form>
@@ -75,17 +79,17 @@
 									<h:outputText value="Nome" />
 									<h:outputText value="#{ProductBean.selectedProduct.name}" />
 
-									<h:outputText value="Prateleiras:" />
+									<h:outputText value="Prateleiras" />
 									<h:outputText
 										value="#{ProductBean.selectedProduct.shelfIdLocation}" />
 
-									<h:outputText value="Desconto" />
+									<h:outputText value="Desconto (%)" />
 									<h:outputText value="#{ProductBean.selectedProduct.discount}%" />
 
-									<h:outputText value="IVA" />
+									<h:outputText value="IVA (%)" />
 									<h:outputText value="#{ProductBean.selectedProduct.tax}%" />
 
-									<h:outputText value="Preço" />
+									<h:outputText value="Preço (€)" />
 									<h:outputText value="#{ProductBean.selectedProduct.salePrice}€" />
 								</p:panelGrid>
 							</p:outputPanel>
@@ -102,19 +106,19 @@
 									<p:inputText styleClass="input"
 										value="#{ProductBean.newProduct.name}" required="true" />
 
-									<h:outputText value="Prateleiras:" />
+									<h:outputText value="Prateleiras" />
 									<p:inputText styleClass="input"
 										value="#{ProductBean.newProduct.shelfIdLocation}" />
 
-									<h:outputText value="Desconto" />
+									<h:outputText value="Desconto (%)" />
 									<p:inputText styleClass="input"
 										value="#{ProductBean.newProduct.discount}" required="true" />
 
-									<h:outputText value="IVA" />
+									<h:outputText value="IVA (%)" />
 									<p:inputText styleClass="input"
 										value="#{ProductBean.newProduct.tax}" required="true" />
 
-									<h:outputText value="Preço" />
+									<h:outputText value="Preço (€)" />
 									<p:inputText styleClass="input"
 										value="#{ProductBean.newProduct.salePrice}" required="true" />
 								</p:panelGrid>
@@ -131,28 +135,31 @@
 							hideEffect="fade" resizable="false">
 							<p:outputPanel id="editProductDetail" style="text-align:center;">
 								<p:panelGrid columns="2"
-									rendered="#{not empty ProductBean.selectedProduct}"
-									columnClasses="label,value">
+									rendered="#{not empty ProductBean.editedProduct}"
+									columnClasses="label,value">									
+									<h:outputText value="ID" />
+									<h:inputText value="#{ProductBean.editedProduct.id}" styleClass="input" readonly="true"/>
+										
 									<h:outputText value="Nome" />
 									<p:inputText styleClass="input" readonly="false"
-										value="#{ProductBean.selectedProduct.name}" required="true" />
+										value="#{ProductBean.editedProduct.name}" required="true" />
 
-									<h:outputText value="Prateleiras:" />
+									<h:outputText value="Prateleiras" />
 									<p:inputText styleClass="input"
-										value="#{ProductBean.selectedProduct.shelfIdLocation}" />
+										value="#{ProductBean.editedProduct.shelfIdLocation}" />
 
-									<h:outputText value="Desconto" />
+									<h:outputText value="Desconto (%)" />
 									<p:inputText styleClass="input"
-										value="#{ProductBean.selectedProduct.discount}"
+										value="#{ProductBean.editedProduct.discount}"
 										required="true" />
 
-									<h:outputText value="IVA" />
+									<h:outputText value="IVA (%)" />
 									<p:inputText styleClass="input"
-										value="#{ProductBean.selectedProduct.tax}" required="true" />
+										value="#{ProductBean.editedProduct.tax}" required="true" />
 
-									<h:outputText value="Preço" />
+									<h:outputText value="Preço (€)" />
 									<p:inputText styleClass="input"
-										value="#{ProductBean.selectedProduct.salePrice}"
+										value="#{ProductBean.editedProduct.salePrice}"
 										required="true" />
 								</p:panelGrid>
 								<p:commandButton id="ProductEditSubmit" value="Submit"

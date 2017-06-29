@@ -19,7 +19,7 @@ public class ProductBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Product selectedProduct;
+	private Product selectedProduct = new Product();
 	
 	public Product getSelectedProduct() {
 		return selectedProduct;
@@ -29,6 +29,16 @@ public class ProductBean implements Serializable {
 		this.selectedProduct = selectedProduct;
 	}
 	
+	private Product editedProduct = new Product();
+	
+	public Product getEditedProduct() {
+		return editedProduct;
+	}
+
+	public void setEditedProduct(Product editedProduct) {
+		this.editedProduct = editedProduct;
+	}
+
 	private Product newProduct = new Product();
 
 	public Product getNewProduct() {
@@ -52,8 +62,8 @@ public class ProductBean implements Serializable {
 	}
 
 	public String editProduct() {
-		System.out.println(selectedProduct.toString());
-		productService.editProduct(selectedProduct);
+		System.out.println(editedProduct.toString());
+		productService.editProduct(editedProduct);
 		return null;
 	}
 
@@ -62,4 +72,17 @@ public class ProductBean implements Serializable {
 		productService.removeEntity(productService.getProductRepository(), selectedProduct);
 		return null;
 	}
+	
+	public void display(){
+		System.out.println(selectedProduct.toString());
+	}
+	
+//	private Integer editedProductId;
+//	
+//	public void passProduct(){
+//		System.out.println(1);
+//		editedProductId = selectedProduct.getId();
+////		editedProduct = selectedProduct;
+////		editedProduct.setId(selectedProduct.getId());
+//	}
 }
