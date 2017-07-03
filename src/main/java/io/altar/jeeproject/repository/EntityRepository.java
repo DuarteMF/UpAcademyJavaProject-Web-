@@ -9,10 +9,7 @@ import io.altar.jeeproject.model.EntityModel;
 
 public class EntityRepository<E extends EntityModel> {
 	@PersistenceContext(unitName="database")
-	private EntityRepository<E> er;
-	
-	EntityManagerFactory emf = Persistence.createEntityManagerFactory("database");
-	EntityManager em = emf.createEntityManager();
+	private EntityManager em;
 	
 	public void addToDb(E entity){
 //		er.getTransaction().begin();
@@ -21,12 +18,12 @@ public class EntityRepository<E extends EntityModel> {
 	}
 	
 	public void removeFromDb(Integer id){
-		E entity = em.find(, id);
+		E entity = em.find(E.class, id);
 		em.remove(entity);
 	}
 	
 	public void alterInDb(E entity){
-		E entity = em.find(, entity.getId());
+		E dbEntity = em.find(E.class, entity.getId());
 		em.merge(entity);
 	}
 	
