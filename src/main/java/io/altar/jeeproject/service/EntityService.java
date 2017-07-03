@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import io.altar.jeeproject.model.Entity;
+import io.altar.jeeproject.model.EntityModel;
 import io.altar.jeeproject.repository.EntityRepository;
 
-public class EntityService<E extends Entity> {
+public class EntityService<E extends EntityModel> {
 	
 	
 	public List<E> showEntities(EntityRepository<E> entityList){

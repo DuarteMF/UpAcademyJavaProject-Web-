@@ -1,9 +1,25 @@
 package io.altar.jeeproject.model;
 
-public class Shelf extends Entity{
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="SHELVES")
+public class Shelf extends EntityModel implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Column(name="Localização")
 	private Integer location = 0;
+	@Column(name="Capacidade")
 	private Integer capacity = 0;
+	@Column(name="Produto", nullable = true)
 	private Integer productID = null;
+	@Column(name="Preço_de_Aluguer")
 	private Double locationRentalPrice = 0.0;
 	
 	public void setLocation(Integer location){

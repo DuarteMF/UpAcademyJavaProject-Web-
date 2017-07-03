@@ -1,11 +1,27 @@
 package io.altar.jeeproject.model;
 
-public class Product extends Entity{
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="PRODUCTS")
+public class Product extends EntityModel implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Column(name="Prateleiras", nullable = true)
 	private String shelfIdLocation ="teste";
 //	private ArrayList<Integer> shelfIdLocation = new ArrayList<>();
 	private String name = "nome";
+	@Column(name="Desconto")
 	private Integer discount = 0;
+	@Column(name="IVA")
 	private Integer tax = 0;
+	@Column(name="Preço")
 	private Double salePrice = 0.0;
 	
 	public void setShelfIdLocation(String shelfIdLocation){
