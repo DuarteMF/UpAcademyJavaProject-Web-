@@ -9,13 +9,13 @@ import io.altar.jeeproject.model.Product;
 @ApplicationScoped
 public class ProductRepository extends EntityRepository<Product> {
 
-	public void alterElement(Integer id, String shelf, String name, Integer discount, Integer tax, Double price) {
-		((Product) get(id)).setShelfIdLocation(shelf);
-		((Product) get(id)).setName(name);		
-		((Product) get(id)).setDiscount(discount);
-		((Product) get(id)).setTax(tax);
-		((Product) get(id)).setSalePrice(price);
-	}
+//	public void alterElement(Integer id, String shelf, String name, Integer discount, Integer tax, Double price) {
+//		((Product) get(id)).setShelfIdLocation(shelf);
+//		((Product) get(id)).setName(name);		
+//		((Product) get(id)).setDiscount(discount);
+//		((Product) get(id)).setTax(tax);
+//		((Product) get(id)).setSalePrice(price);
+//	}
 	
 //	public void addShelfLocation(Integer id, Integer shelfLocation) {
 //		ArrayList<Integer> currentShelfLocation = ((Product) get(id)).getShelfIdLocation();

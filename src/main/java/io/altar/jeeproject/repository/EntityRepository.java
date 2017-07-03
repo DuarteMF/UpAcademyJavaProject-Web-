@@ -1,13 +1,33 @@
 package io.altar.jeeproject.repository;
 
-import io.altar.jeeproject.model.EntityModel;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
+import io.altar.jeeproject.model.EntityModel;
+
 public class EntityRepository<E extends EntityModel> {
-	@PersistenceContext
+	@PersistenceContext(unitName="database")
+	private EntityRepository<E> er;
 	
-	public void addEntity(){
-		
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("database");
+	EntityManager em = emf.createEntityManager();
+	
+	public void addToDb(E entity){
+//		er.getTransaction().begin();
+//		er.persist(entity);
+		em.persist(entity);
+	}
+	
+	public void removeFromDb(Integer id){
+		E entity = em.find(, id);
+		em.remove(entity);
+	}
+	
+	public void alterInDb(E entity){
+		E entity = em.find(, entity.getId());
+		em.merge(entity);
 	}
 	
 //	private Integer id = 0;
