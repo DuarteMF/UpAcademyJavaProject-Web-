@@ -20,7 +20,7 @@
 					<p:growl id="msgs" showDetail="true" />
 					<h:form id="ProductTable">
 						<p:dataTable id="ProductList" var="listProduct"
-							value="#{ProductBean.getProducts()}" selectionMode="single"
+							value="#{ProductBean.productList}" selectionMode="single"
 							selection="#{ProductBean.selectedProduct}"
 							rowKey="#{listProduct.id}" draggableColumns="true">
 							<f:facet name="header">

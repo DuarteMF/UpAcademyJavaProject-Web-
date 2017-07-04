@@ -7,7 +7,6 @@ import io.altar.jeeproject.repository.EntityRepository;
 
 public class EntityService<E extends EntityModel> {
 	
-	
 	public List<E> showEntities(EntityRepository<E> entityList){
 		List<E> list = entityList.getDbElements();
 		return list;

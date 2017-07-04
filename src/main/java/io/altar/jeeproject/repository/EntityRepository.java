@@ -24,13 +24,16 @@ public class EntityRepository<E extends EntityModel> {
 	
 	@Transactional
 	public void addToDb(E entity){
+		System.out.println(entity.toString());
 //		userTransaction.begin();
 		em.persist(entity);
+		System.out.println(entity.toString());
 //		userTransaction.commit();
 	}
 	
 	public List<E> getDbElements(){
-		return new ArrayList<E>();
+		List<E> entityList = new ArrayList<E>();
+		return entityList;
 	}
 	
 //	public void removeFromDb(Integer id){
