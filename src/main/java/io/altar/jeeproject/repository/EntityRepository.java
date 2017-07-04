@@ -3,8 +3,11 @@ package io.altar.jeeproject.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import javax.transaction.UserTransaction;
 
 import io.altar.jeeproject.model.EntityModel;
 
@@ -12,12 +15,18 @@ public class EntityRepository<E extends EntityModel> {
 	@PersistenceContext(unitName="database")
 	private EntityManager em;
 	
+	@Resource
+    private UserTransaction userTransaction;
+	
 	public EntityManager getDb(){
 		return em;
 	}
 	
+	@Transactional
 	public void addToDb(E entity){
+//		userTransaction.begin();
 		em.persist(entity);
+//		userTransaction.commit();
 	}
 	
 	public List<E> getDbElements(){

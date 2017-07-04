@@ -7,7 +7,8 @@
              version="2.1">
 	<persistence-unit name="database" transaction-type="JTA">
 		<description>Repositories for entities</description>
-		<jta-data-source>java:/MySqlDS</jta-data-source>
+		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+<!-- 		<jta-data-source>java:MySqlDS</jta-data-source> -->
 		
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action"
