@@ -8,6 +8,17 @@ import io.altar.jeeproject.model.Product;
 @Named("productRepository")
 @ApplicationScoped
 public class ProductRepository extends EntityRepository<Product> {
+//	private EntityManager em = getDb();
+	
+//	public void removeFromDb(Integer id){
+//		E entity = em.find(Product.class, id);
+//		em.remove(entity);
+//	}
+//	
+//	public void alterInDb(Product product){
+//		E dbEntity = em.find(E.class, entity.getId());
+//		em.merge(entity);
+//	}
 
 //	public void alterElement(Integer id, String shelf, String name, Integer discount, Integer tax, Double price) {
 //		((Product) get(id)).setShelfIdLocation(shelf);

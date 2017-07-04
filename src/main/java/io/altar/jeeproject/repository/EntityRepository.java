@@ -1,8 +1,9 @@
 package io.altar.jeeproject.repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import io.altar.jeeproject.model.EntityModel;
@@ -11,20 +12,31 @@ public class EntityRepository<E extends EntityModel> {
 	@PersistenceContext(unitName="database")
 	private EntityManager em;
 	
+	public EntityManager getDb(){
+		return em;
+	}
+	
 	public void addToDb(E entity){
-//		er.getTransaction().begin();
-//		er.persist(entity);
 		em.persist(entity);
 	}
 	
-	public void removeFromDb(Integer id){
-		E entity = em.find(E.class, id);
-		em.remove(entity);
+	public List<E> getDbElements(){
+		return new ArrayList<E>();
 	}
 	
-	public void alterInDb(E entity){
-		E dbEntity = em.find(E.class, entity.getId());
-		em.merge(entity);
+//	public void removeFromDb(Integer id){
+//		E entity = em.find(EntityModel.class, id);
+//		em.remove(entity);
+//	}
+	
+	public void removeFromDb(E entity){
+//		E entity = em.find(EntityModel.class, id);
+		em.remove(entity);
+	}
+//	
+	public void alterInDb(E newEntity){
+//		E dbEntity = em.find(E.class, entity.getId());
+		em.merge(newEntity);
 	}
 	
 //	private Integer id = 0;

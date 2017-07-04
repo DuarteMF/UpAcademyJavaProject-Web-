@@ -1,7 +1,5 @@
 package io.altar.jeeproject.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import io.altar.jeeproject.model.EntityModel;
@@ -11,15 +9,19 @@ public class EntityService<E extends EntityModel> {
 	
 	
 	public List<E> showEntities(EntityRepository<E> entityList){
-		List<E> list = new ArrayList<E>((Collection<E>)entityList.values());
+		List<E> list = entityList.getDbElements();
 		return list;
 	}
 	
 	public void addEntity(EntityRepository<E> entityList, E entity){
-		entityList.addToList(entity);
+		entityList.addToDb(entity);
 	}
 	
 	public void removeEntity(EntityRepository<E> entityList, E entity){
-		entityList.removeElement(entity.getId());
+		entityList.removeFromDb(entity);
+	}
+	
+	public void editEntity(EntityRepository<E> entityList, E entity){
+		entityList.alterInDb(entity);
 	}
 }

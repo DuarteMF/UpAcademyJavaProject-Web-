@@ -17,7 +17,7 @@ public class ShelfService extends EntityService<Shelf>{
 		return shelfList;
 	}
 	
-	public void editShelf(Shelf shelf){
-		shelfList.alterElement(shelf.getId(), shelf.getLocation(), shelf.getCapacity(), shelf.getProductID(), shelf.getLocationRentalPrice());
-	}
+//	public void editShelf(Shelf shelf){
+//		shelfList.alterElement(shelf.getId(), shelf.getLocation(), shelf.getCapacity(), shelf.getProductID(), shelf.getLocationRentalPrice());
+//	}
 }

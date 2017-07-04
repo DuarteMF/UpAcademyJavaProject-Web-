@@ -53,7 +53,7 @@ public class ShelfBean implements Serializable{
     
     public String editShelf(){
 		System.out.println(selectedShelf.toString());
-		shelfService.editShelf(selectedShelf);
+		shelfService.editEntity(shelfService.getShelfRepository(), selectedShelf);
     	return null;
     }
     
