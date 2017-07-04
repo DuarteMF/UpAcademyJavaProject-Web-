@@ -3,9 +3,8 @@
 <persistence version="2.1">
 	<persistence-unit name="database" transaction-type="JTA">
 		<description>Repositories for entities</description>
-		<jta-data-source>java:jboss/datasources/MySqlDS</jta-data-source>
-		<class>io.altar.jeeproject.model.Product</class>
-		<class>io.altar.jeeproject.model.Shelf</class>
+		<jta-data-source>java:jboss/datasources/UpAcademyJavaProjectWeb</jta-data-source>
+		
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action"
 				value="drop-and-create" />
