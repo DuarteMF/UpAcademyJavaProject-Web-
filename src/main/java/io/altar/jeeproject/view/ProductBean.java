@@ -1,7 +1,6 @@
 package io.altar.jeeproject.view;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -52,24 +51,14 @@ public class ProductBean implements Serializable {
 
 	@Inject
 	private ProductService productService;
-
-	private List<Product> productList = new ArrayList<>();
 	
-//	public List<Product> getProducts() {
-//		return productService.showEntities(productService.getProductRepository());
-//	}
-
-	public List<Product> getProductList() {
-		return productList;
+	public List<Product> getProducts() {
+		return productService.showEntities(productService.getProductRepository());
 	}
 
-	public void setProductList(List<Product> productList) {
-		this.productList = productList;
-	}
 
 	public String addProduct() {
 		productService.addEntity(productService.getProductRepository(), newProduct);
-		productList.add(newProduct);
 		return null;
 	}
 

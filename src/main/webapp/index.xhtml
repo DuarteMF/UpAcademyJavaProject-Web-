@@ -20,18 +20,22 @@
 					<p:growl id="msgs" showDetail="true" />
 					<h:form id="ProductTable">
 						<p:dataTable id="ProductList" var="listProduct"
-							value="#{ProductBean.productList}" selectionMode="single"
+							value="#{ProductBean.getProducts()}" selectionMode="single"
 							selection="#{ProductBean.selectedProduct}"
 							rowKey="#{listProduct.id}" draggableColumns="true">
 							<f:facet name="header">
-								<p:commandButton value="Adicionar" update=":tabs:ProductAddDialog:addProductDetail"
+								<p:commandButton value="Adicionar"
+									update=":tabs:ProductAddDialog:addProductDetail"
 									oncomplete="PF('productAdd').show()" />
 								<p:commandButton value="Editar"
 									update=":tabs:ProductEditDialog:editProductDetail"
-									oncomplete="PF('productEdit').show()" >
-									<f:setPropertyActionListener target="#{ProductBean.editedProduct}" value="#{ProductBean.selectedProduct}" />
-									</p:commandButton>
-								<p:commandButton value="Eliminar" update=":tabs:ProductTable:ProductList"
+									oncomplete="PF('productEdit').show()">
+									<f:setPropertyActionListener
+										target="#{ProductBean.editedProduct}"
+										value="#{ProductBean.selectedProduct}" />
+								</p:commandButton>
+								<p:commandButton value="Eliminar"
+									update=":tabs:ProductTable:ProductList"
 									action="#{ProductBean.deleteProduct()}" />
 							</f:facet>
 							<p:column headerText="ID">
@@ -57,8 +61,7 @@
 								<h:outputText value="#{listProduct.salePrice}" />
 							</p:column>
 							<f:facet name="footer">
-								<p:commandButton 
-									icon="ui-icon-search" value="Mostrar"
+								<p:commandButton icon="ui-icon-search" value="Mostrar"
 									oncomplete="PF('productDisplay').show()"
 									action="#{ProductBean.display()}" />
 							</f:facet>
@@ -123,7 +126,8 @@
 										value="#{ProductBean.newProduct.salePrice}" required="true" />
 								</p:panelGrid>
 								<p:commandButton id="ProductAddSubmit" value="Submit"
-									update=":tabs:msgs,:tabs:ProductTable:ProductList" action="#{ProductBean.addProduct()}"
+									update=":tabs:msgs,:tabs:ProductTable:ProductList"
+									action="#{ProductBean.addProduct()}"
 									oncomplete="PF('productAdd').hide()" />
 							</p:outputPanel>
 						</p:dialog>
@@ -136,10 +140,11 @@
 							<p:outputPanel id="editProductDetail" style="text-align:center;">
 								<p:panelGrid columns="2"
 									rendered="#{not empty ProductBean.editedProduct}"
-									columnClasses="label,value">									
+									columnClasses="label,value">
 									<h:outputText value="ID" />
-									<h:inputText value="#{ProductBean.editedProduct.id}" styleClass="input" readonly="true"/>
-										
+									<h:inputText value="#{ProductBean.editedProduct.id}"
+										styleClass="input" readonly="true" />
+
 									<h:outputText value="Nome" />
 									<p:inputText styleClass="input" readonly="false"
 										value="#{ProductBean.editedProduct.name}" required="true" />
@@ -150,8 +155,7 @@
 
 									<h:outputText value="Desconto (%)" />
 									<p:inputText styleClass="input"
-										value="#{ProductBean.editedProduct.discount}"
-										required="true" />
+										value="#{ProductBean.editedProduct.discount}" required="true" />
 
 									<h:outputText value="IVA (%)" />
 									<p:inputText styleClass="input"
@@ -159,8 +163,7 @@
 
 									<h:outputText value="Preço (€)" />
 									<p:inputText styleClass="input"
-										value="#{ProductBean.editedProduct.salePrice}"
-										required="true" />
+										value="#{ProductBean.editedProduct.salePrice}" required="true" />
 								</p:panelGrid>
 								<p:commandButton id="ProductEditSubmit" value="Submit"
 									update=":tabs:msgs,:tabs:ProductTable:ProductList"
@@ -180,11 +183,14 @@
 							selection="#{ShelfBean.selectedShelf}" rowKey="#{shelf.id}"
 							draggableColumns="true">
 							<f:facet name="header">
-								<p:commandButton  value="Add" update=":tabs:ShelfAddDialog:addShelfDetail"
+								<p:commandButton value="Add"
+									update=":tabs:ShelfAddDialog:addShelfDetail"
 									oncomplete="PF('shelfAdd').show()" />
-								<p:commandButton  value="Edit" update=":tabs:ShelfEditDialog:editShelfDetail"
+								<p:commandButton value="Edit"
+									update=":tabs:ShelfEditDialog:editShelfDetail"
 									oncomplete="PF('shelfEdit').show()" />
-								<p:commandButton value="Delete" update=":tabs:ShelfTable:ShelfList"
+								<p:commandButton value="Delete"
+									update=":tabs:ShelfTable:ShelfList"
 									action="#{ShelfBean.deleteShelf()}" />
 							</f:facet>
 							<p:column headerText="ID">
@@ -207,9 +213,8 @@
 								<h:outputText value="#{shelf.locationRentalPrice}€" />
 							</p:column>
 							<f:facet name="footer">
-								<p:commandButton process="ShelfList" 
-									icon="ui-icon-search" value="View"
-									oncomplete="PF('shelfDialog').show()" />
+								<p:commandButton process="ShelfList" icon="ui-icon-search"
+									value="View" oncomplete="PF('shelfDialog').show()" />
 							</f:facet>
 						</p:dataTable>
 					</h:form>
@@ -263,7 +268,8 @@
 										required="true" />
 								</p:panelGrid>
 								<p:commandButton id="ShelfAddSubmit" value="Submit"
-									update=":tabs:msgs,:tabs:ShelfTable:ShelfList" action="#{ShelfBean.addShelf()}"
+									update=":tabs:msgs,:tabs:ShelfTable:ShelfList"
+									action="#{ShelfBean.addShelf()}"
 									oncomplete="PF('shelfAdd').hide()" />
 							</p:outputPanel>
 						</p:dialog>
@@ -295,7 +301,8 @@
 										required="true" />
 								</p:panelGrid>
 								<p:commandButton id="ShelfEditSubmit" value="Submit"
-									update=":tabs:msgs,:tabs:ShelfTable:ShelfList" action="#{ShelfBean.editShelf()}"
+									update=":tabs:msgs,:tabs:ShelfTable:ShelfList"
+									action="#{ShelfBean.editShelf()}"
 									oncomplete="PF('shelfEdit').hide()" />
 							</p:outputPanel>
 						</p:dialog>

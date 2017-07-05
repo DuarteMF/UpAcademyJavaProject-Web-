@@ -1,10 +1,14 @@
 package io.altar.jeeproject.service;
 
+import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import io.altar.jeeproject.model.Product;
 import io.altar.jeeproject.model.Shelf;
+import io.altar.jeeproject.repository.ProductRepository;
 import io.altar.jeeproject.repository.ShelfRepository;
 
 @Named("ShelfService")
@@ -15,6 +19,11 @@ public class ShelfService extends EntityService<Shelf>{
 	
 	public ShelfRepository getShelfRepository(){
 		return shelfList;
+	}
+	
+	public List<Shelf> showEntities(ShelfRepository shelfList){
+		List<Shelf> list = shelfList.getDbElements();
+		return list;
 	}
 	
 //	public void editShelf(Shelf shelf){

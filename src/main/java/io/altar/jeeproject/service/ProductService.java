@@ -1,5 +1,7 @@
 package io.altar.jeeproject.service;
 
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,6 +17,11 @@ public class ProductService extends EntityService<Product>{
 	
 	public ProductRepository getProductRepository(){
 		return productList;
+	}
+	
+	public List<Product> showEntities(ProductRepository productList){
+		List<Product> list = productList.getDbElements();
+		return list;
 	}
 	
 //	public void editProduct(Product product){
