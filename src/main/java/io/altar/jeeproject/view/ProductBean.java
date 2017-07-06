@@ -13,6 +13,61 @@ import io.altar.jeeproject.service.ProductService;
 @Named("ProductBean")
 @RequestScoped
 public class ProductBean implements Serializable {
+	
+	private int id;
+	private String name;
+	private String shelfId;
+	private int discount;
+	private int tax;
+	private double price;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getShelfId() {
+		return shelfId;
+	}
+
+	public void setShelfId(String shelfId) {
+		this.shelfId = shelfId;
+	}
+
+	public int getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
+
+	public int getTax() {
+		return tax;
+	}
+
+	public void setTax(int tax) {
+		this.tax = tax;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
 
 	/**
 	 * 

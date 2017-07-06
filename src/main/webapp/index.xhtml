@@ -31,8 +31,8 @@
 									update=":tabs:ProductEditDialog:editProductDetail"
 									oncomplete="PF('productEdit').show()">
 									<f:setPropertyActionListener
-										target="#{ProductBean.editedProduct}"
-										value="#{ProductBean.selectedProduct}" />
+										target="#{ProductBean.id}"
+										value="#{ProductBean.selectedProduct.id}" />
 								</p:commandButton>
 								<p:commandButton value="Eliminar"
 									update=":tabs:ProductTable:ProductList"
@@ -142,7 +142,7 @@
 									rendered="#{not empty ProductBean.editedProduct}"
 									columnClasses="label,value">
 									<h:outputText value="ID" />
-									<h:inputText value="#{ProductBean.editedProduct.id}"
+									<h:inputText value="#{ProductBean.id}"
 										styleClass="input" readonly="true" />
 
 									<h:outputText value="Nome" />
