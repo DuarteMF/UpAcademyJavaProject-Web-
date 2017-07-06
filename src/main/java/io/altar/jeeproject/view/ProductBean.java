@@ -15,6 +15,7 @@ import io.altar.jeeproject.service.ProductService;
 public class ProductBean implements Serializable {
 	
 	private int id;
+	private int displayId;
 	private String name;
 	private String shelfId;
 	private int discount;
@@ -69,6 +70,14 @@ public class ProductBean implements Serializable {
 		this.price = price;
 	}
 
+	public int getDisplayId() {
+		return displayId;
+	}
+
+	public void setDisplayId(int displayId) {
+		this.displayId = displayId;
+	}
+
 	/**
 	 * 
 	 */
@@ -117,28 +126,19 @@ public class ProductBean implements Serializable {
 		return null;
 	}
 
+//	public String editProduct() {
+//		System.out.println(editedProduct.toString());
+//		productService.editEntity(productService.getProductRepository(), editedProduct);
+//		return null;
+//	}
+	
 	public String editProduct() {
-		System.out.println(editedProduct.toString());
-		productService.editEntity(productService.getProductRepository(), editedProduct);
+		productService.editEntity(id, name, shelfId, discount, tax, price);
 		return null;
 	}
 
 	public String deleteProduct() {
-		System.out.println(selectedProduct.toString());
 		productService.removeEntity(productService.getProductRepository(), selectedProduct);
 		return null;
 	}
-	
-	public void display(){
-		System.out.println(selectedProduct.toString());
-	}
-	
-//	private Integer editedProductId;
-//	
-//	public void passProduct(){
-//		System.out.println(1);
-//		editedProductId = selectedProduct.getId();
-////		editedProduct = selectedProduct;
-////		editedProduct.setId(selectedProduct.getId());
-//	}
 }

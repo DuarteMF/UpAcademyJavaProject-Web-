@@ -26,18 +26,16 @@ public class ProductRepository extends EntityRepository<Product> {
 		Product productToRemove = getDb().find(Product.class, product.getId());
 		getDb().remove(productToRemove);
 	}
-
-	// private EntityManager em = getDb();
-
-	// public void removeFromDb(Integer id){
-	// E entity = em.find(Product.class, id);
-	// em.remove(entity);
-	// }
-	//
-	// public void alterInDb(Product product){
-	// E dbEntity = em.find(E.class, entity.getId());
-	// em.merge(entity);
-	// }
+	
+	@Transactional
+	public void alterInDb(int id, String name, String shelfId, int discount, int tax, double price){
+		Product dbProduct = getDb().find(Product.class, id);
+		dbProduct.setName(name);
+		dbProduct.setShelfIdLocation(shelfId);
+		dbProduct.setDiscount(discount);
+		dbProduct.setTax(tax);
+		dbProduct.setSalePrice(price);
+	}
 
 	// public void alterElement(Integer id, String shelf, String name, Integer
 	// discount, Integer tax, Double price) {

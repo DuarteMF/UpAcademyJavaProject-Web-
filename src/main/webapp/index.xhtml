@@ -30,9 +30,18 @@
 								<p:commandButton value="Editar"
 									update=":tabs:ProductEditDialog:editProductDetail"
 									oncomplete="PF('productEdit').show()">
-									<f:setPropertyActionListener
-										target="#{ProductBean.id}"
+									<f:setPropertyActionListener target="#{ProductBean.id}"
 										value="#{ProductBean.selectedProduct.id}" />
+									<f:setPropertyActionListener target="#{ProductBean.name}"
+										value="#{ProductBean.selectedProduct.name}" />
+									<f:setPropertyActionListener target="#{ProductBean.shelfId}"
+										value="#{ProductBean.selectedProduct.shelfIdLocation}" />
+									<f:setPropertyActionListener target="#{ProductBean.discount}"
+										value="#{ProductBean.selectedProduct.discount}" />
+									<f:setPropertyActionListener target="#{ProductBean.tax}"
+										value="#{ProductBean.selectedProduct.tax}" />
+									<f:setPropertyActionListener target="#{ProductBean.price}"
+										value="#{ProductBean.selectedProduct.salePrice}" />
 								</p:commandButton>
 								<p:commandButton value="Eliminar"
 									update=":tabs:ProductTable:ProductList"
@@ -63,7 +72,10 @@
 							<f:facet name="footer">
 								<p:commandButton icon="ui-icon-search" value="Mostrar"
 									oncomplete="PF('productDisplay').show()"
-									action="#{ProductBean.display()}" />
+									action="#{ProductBean.display()}">
+									<f:setPropertyActionListener target="#{ProductBean.displayId}"
+										value="#{ProductBean.selectedProduct.id}" />
+								</p:commandButton>
 							</f:facet>
 						</p:dataTable>
 					</h:form>
@@ -77,7 +89,7 @@
 									rendered="#{not empty ProductBean.selectedProduct}"
 									columnClasses="label,value">
 									<h:outputText value="ID:" />
-									<h:outputText value="#{ProductBean.selectedProduct.id}" />
+									<h:outputText value="#{ProductBean.displayId}" />
 
 									<h:outputText value="Nome" />
 									<h:outputText value="#{ProductBean.selectedProduct.name}" />
@@ -138,32 +150,29 @@
 							widgetVar="productEdit" modal="true" showEffect="fade"
 							hideEffect="fade" resizable="false">
 							<p:outputPanel id="editProductDetail" style="text-align:center;">
+								<h:inputHidden value="#{ProductBean.id}" />
 								<p:panelGrid columns="2"
-									rendered="#{not empty ProductBean.editedProduct}"
+									rendered="#{not empty ProductBean.selectedProduct}"
 									columnClasses="label,value">
-									<h:outputText value="ID" />
-									<h:inputText value="#{ProductBean.id}"
-										styleClass="input" readonly="true" />
 
 									<h:outputText value="Nome" />
 									<p:inputText styleClass="input" readonly="false"
-										value="#{ProductBean.editedProduct.name}" required="true" />
+										value="#{ProductBean.name}" required="true" />
 
 									<h:outputText value="Prateleiras" />
-									<p:inputText styleClass="input"
-										value="#{ProductBean.editedProduct.shelfIdLocation}" />
+									<p:inputText styleClass="input" value="#{ProductBean.shelfId}" />
 
 									<h:outputText value="Desconto (%)" />
-									<p:inputText styleClass="input"
-										value="#{ProductBean.editedProduct.discount}" required="true" />
+									<p:inputText styleClass="input" value="#{ProductBean.discount}"
+										required="true" />
 
 									<h:outputText value="IVA (%)" />
-									<p:inputText styleClass="input"
-										value="#{ProductBean.editedProduct.tax}" required="true" />
+									<p:inputText styleClass="input" value="#{ProductBean.tax}"
+										required="true" />
 
 									<h:outputText value="Preço (€)" />
-									<p:inputText styleClass="input"
-										value="#{ProductBean.editedProduct.salePrice}" required="true" />
+									<p:inputText styleClass="input" value="#{ProductBean.price}"
+										required="true" />
 								</p:panelGrid>
 								<p:commandButton id="ProductEditSubmit" value="Submit"
 									update=":msgs,:tabs:ProductTable:ProductList"
@@ -189,8 +198,16 @@
 								<p:commandButton value="Editar"
 									update=":tabs:ShelfEditDialog:editShelfDetail"
 									oncomplete="PF('shelfEdit').show()">
-									<f:setPropertyActionListener target="#{ShelfBean.editedShelf}"
-										value="#{ShelfBean.selectedShelf}" />
+									<f:setPropertyActionListener target="#{ShelfBean.id}"
+										value="#{ShelfBean.selectedShelf.id}" />
+									<f:setPropertyActionListener target="#{ShelfBean.location}"
+										value="#{ShelfBean.selectedShelf.location}" />
+									<f:setPropertyActionListener target="#{ShelfBean.capacity}"
+										value="#{ShelfBean.selectedShelf.capacity}" />
+									<f:setPropertyActionListener target="#{ShelfBean.productID}"
+										value="#{ShelfBean.selectedShelf.productID}" />
+									<f:setPropertyActionListener target="#{ShelfBean.rentalprice}"
+										value="#{ShelfBean.selectedShelf.locationRentalPrice}" />
 								</p:commandButton>
 								<p:commandButton value="Eliminar"
 									update=":tabs:ShelfTable:ShelfList"
@@ -217,7 +234,10 @@
 							</p:column>
 							<f:facet name="footer">
 								<p:commandButton process="ShelfList" icon="ui-icon-search"
-									value="View" oncomplete="PF('shelfDialog').show()" />
+									value="View" oncomplete="PF('shelfDialog').show()">
+									<f:setPropertyActionListener target="#{ShelfBean.displayID}"
+										value="#{ShelfBean.selectedShelf.id}" />
+								</p:commandButton>
 							</f:facet>
 						</p:dataTable>
 					</h:form>
@@ -283,24 +303,25 @@
 							widgetVar="shelfEdit" modal="true" showEffect="fade"
 							hideEffect="fade" resizable="false">
 							<p:outputPanel id="editShelfDetail" style="text-align:center;">
+							<h:inputHidden value="#{ShelfBean.id}"/>
 								<p:panelGrid columns="2"
 									rendered="#{not empty ShelfBean.editedShelf}"
 									columnClasses="label,value">
 									<h:outputText value="Localização" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.editedShelf.location}" required="true" />
+										value="#{ShelfBean.location}" required="true" />
 
 									<h:outputText value="Capacidade:" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.editedShelf.capacity}" />
+										value="#{ShelfBean.capacity}" />
 
 									<h:outputText value="ID do Produto" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.editedShelf.productID}" required="true" />
+										value="#{ShelfBean.productID}" required="true" />
 
 									<h:outputText value="Preço de Aluguer" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.editedShelf.locationRentalPrice}"
+										value="#{ShelfBean.rentalprice}"
 										required="true" />
 								</p:panelGrid>
 								<p:commandButton id="ShelfEditSubmit" value="Submit"

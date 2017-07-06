@@ -26,6 +26,15 @@ public class ShelfRepository extends EntityRepository<Shelf> {
 		Shelf shelfToRemove = getDb().find(Shelf.class, shelf.getId());
 		getDb().remove(shelfToRemove);
 	}
+	
+	@Transactional
+	public void alterInDb(int id, int location, int capacity, int productID, double rentalPrice){
+		Shelf dbShelf = getDb().find(Shelf.class, id);
+		dbShelf.setLocation(location);
+		dbShelf.setCapacity(capacity);
+		dbShelf.setProductID(productID);
+		dbShelf.setLocationRentalPrice(rentalPrice);
+	}
 
 //	public void alterElement(Integer id, Integer location, Integer capacity, Integer productID, Double price) {
 //		((Shelf) get(id)).setLocation(location);

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import io.altar.jeeproject.model.Product;
+import io.altar.jeeproject.repository.EntityRepository;
 import io.altar.jeeproject.repository.ProductRepository;
 
 @Named("ProductService")
@@ -22,6 +23,10 @@ public class ProductService extends EntityService<Product>{
 	public List<Product> showEntities(ProductRepository productList){
 		List<Product> list = productList.getDbElements();
 		return list;
+	}
+	
+	public void editEntity(int id, String name, String shelfId, int discount, int tax, double price){
+		productList.alterInDb(id, name, shelfId, discount, tax, price);
 	}
 	
 //	public void editProduct(Product product){
