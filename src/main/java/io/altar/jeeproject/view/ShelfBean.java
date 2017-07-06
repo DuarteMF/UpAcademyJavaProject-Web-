@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import io.altar.jeeproject.model.Product;
 import io.altar.jeeproject.model.Shelf;
 import io.altar.jeeproject.service.ShelfService;
 
@@ -19,7 +20,7 @@ public class ShelfBean implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Shelf selectedShelf;
+	private Shelf selectedShelf = new Shelf();
 	
 	public Shelf getSelectedShelf() {
         return selectedShelf;
@@ -28,6 +29,16 @@ public class ShelfBean implements Serializable{
     public void setSelectedShelf(Shelf selectedShelf) {
         this.selectedShelf = selectedShelf;
     }
+    
+	private Shelf editedShelf = new Shelf();
+
+	public Shelf getEditedShelf() {
+		return editedShelf;
+	}
+
+	public void setEditedProduct(Shelf editedShelf) {
+		this.editedShelf = editedShelf;
+	}
 	
 	private Shelf newShelf = new Shelf();
 	

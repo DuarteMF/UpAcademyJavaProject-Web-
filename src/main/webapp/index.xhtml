@@ -15,9 +15,9 @@
 <h:body>
 	<ui:composition template="CommonLayout.xhtml">
 		<ui:define name="content">
+			<p:growl id="msgs" showDetail="true" />
 			<p:tabView id="tabs">
 				<p:tab title="Produtos" id="Products">
-					<p:growl id="msgs" showDetail="true" />
 					<h:form id="ProductTable">
 						<p:dataTable id="ProductList" var="listProduct"
 							value="#{ProductBean.getProducts()}" selectionMode="single"
@@ -126,7 +126,7 @@
 										value="#{ProductBean.newProduct.salePrice}" required="true" />
 								</p:panelGrid>
 								<p:commandButton id="ProductAddSubmit" value="Submit"
-									update=":tabs:msgs,:tabs:ProductTable:ProductList"
+									update=":msgs,:tabs:ProductTable:ProductList"
 									action="#{ProductBean.addProduct()}"
 									oncomplete="PF('productAdd').hide()" />
 							</p:outputPanel>
@@ -166,7 +166,7 @@
 										value="#{ProductBean.editedProduct.salePrice}" required="true" />
 								</p:panelGrid>
 								<p:commandButton id="ProductEditSubmit" value="Submit"
-									update=":tabs:msgs,:tabs:ProductTable:ProductList"
+									update=":msgs,:tabs:ProductTable:ProductList"
 									action="#{ProductBean.editProduct()}"
 									oncomplete="PF('productEdit').hide()" />
 							</p:outputPanel>
@@ -176,20 +176,23 @@
 
 
 
-				<p:tab title="Prateleiras">
+				<p:tab title="Prateleiras" id="Shelves">
 					<h:form id="ShelfTable">
 						<p:dataTable id="ShelfList" var="shelf"
 							value="#{ShelfBean.shelves}" selectionMode="single"
 							selection="#{ShelfBean.selectedShelf}" rowKey="#{shelf.id}"
 							draggableColumns="true">
 							<f:facet name="header">
-								<p:commandButton value="Add"
+								<p:commandButton value="Adicionar"
 									update=":tabs:ShelfAddDialog:addShelfDetail"
 									oncomplete="PF('shelfAdd').show()" />
-								<p:commandButton value="Edit"
+								<p:commandButton value="Editar"
 									update=":tabs:ShelfEditDialog:editShelfDetail"
-									oncomplete="PF('shelfEdit').show()" />
-								<p:commandButton value="Delete"
+									oncomplete="PF('shelfEdit').show()">
+									<f:setPropertyActionListener target="#{ShelfBean.editedShelf}"
+										value="#{ShelfBean.selectedShelf}" />
+								</p:commandButton>
+								<p:commandButton value="Eliminar"
 									update=":tabs:ShelfTable:ShelfList"
 									action="#{ShelfBean.deleteShelf()}" />
 							</f:facet>
@@ -268,7 +271,7 @@
 										required="true" />
 								</p:panelGrid>
 								<p:commandButton id="ShelfAddSubmit" value="Submit"
-									update=":tabs:msgs,:tabs:ShelfTable:ShelfList"
+									update=":msgs,:tabs:ShelfTable:ShelfList"
 									action="#{ShelfBean.addShelf()}"
 									oncomplete="PF('shelfAdd').hide()" />
 							</p:outputPanel>
@@ -281,27 +284,27 @@
 							hideEffect="fade" resizable="false">
 							<p:outputPanel id="editShelfDetail" style="text-align:center;">
 								<p:panelGrid columns="2"
-									rendered="#{not empty ShelfBean.selectedShelf}"
+									rendered="#{not empty ShelfBean.editedShelf}"
 									columnClasses="label,value">
 									<h:outputText value="Localização" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.selectedShelf.location}" required="true" />
+										value="#{ShelfBean.editedShelf.location}" required="true" />
 
 									<h:outputText value="Capacidade:" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.selectedShelf.capacity}" />
+										value="#{ShelfBean.editedShelf.capacity}" />
 
 									<h:outputText value="ID do Produto" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.selectedShelf.productID}" required="true" />
+										value="#{ShelfBean.editedShelf.productID}" required="true" />
 
 									<h:outputText value="Preço de Aluguer" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.selectedShelf.locationRentalPrice}"
+										value="#{ShelfBean.editedShelf.locationRentalPrice}"
 										required="true" />
 								</p:panelGrid>
 								<p:commandButton id="ShelfEditSubmit" value="Submit"
-									update=":tabs:msgs,:tabs:ShelfTable:ShelfList"
+									update=":msgs,:tabs:ShelfTable:ShelfList"
 									action="#{ShelfBean.editShelf()}"
 									oncomplete="PF('shelfEdit').hide()" />
 							</p:outputPanel>
