@@ -1,6 +1,10 @@
 package io.altar.jeeproject.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +18,7 @@ public class Product extends EntityModel implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@Column(name="Prateleiras", nullable = true)
-	private String shelfIdLocation ="teste";
-//	private ArrayList<Integer> shelfIdLocation = new ArrayList<>();
+	private String shelfIdLocation = "vazia";
 	private String name = "nome";
 	@Column(name="Desconto")
 	private Integer discount = 0;
@@ -24,8 +27,9 @@ public class Product extends EntityModel implements Serializable{
 	@Column(name="Preço")
 	private Double salePrice = 0.0;
 	
-	public void setShelfIdLocation(String shelfIdLocation){
-		this.shelfIdLocation = shelfIdLocation;
+	public void setShelfIdLocation(List<Integer> shelfIdLocation){
+		String s = shelfIdLocation.stream().map(e -> e.toString()).reduce(", ", String::concat);
+		this.shelfIdLocation = s;
 	}
 	
 	public void setName(String name){
@@ -44,8 +48,14 @@ public class Product extends EntityModel implements Serializable{
 		this.salePrice = salePrice;
 	}
 	
-	public String getShelfIdLocation(){
-		return this.shelfIdLocation;
+	public List<Integer> getShelfIdLocation(){
+		if (!(this.shelfIdLocation.equals("vazia"))) {
+			List<String> s = new ArrayList<String>(Arrays.asList(this.shelfIdLocation.split(", ")));
+			List<Integer> sInt = s.stream().map(Integer::parseInt).collect(Collectors.toList());
+			return sInt;
+		} else {
+			return new ArrayList<Integer>();
+		}
 	}
 	
 	public String getName(){

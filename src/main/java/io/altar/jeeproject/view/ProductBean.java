@@ -1,14 +1,18 @@
 package io.altar.jeeproject.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import io.altar.jeeproject.model.Product;
+import io.altar.jeeproject.model.Shelf;
 import io.altar.jeeproject.service.ProductService;
+import io.altar.jeeproject.service.ShelfService;
 
 @Named("ProductBean")
 @RequestScoped
@@ -17,7 +21,7 @@ public class ProductBean implements Serializable {
 	private int id;
 	private int displayId;
 	private String name;
-	private String shelfId;
+	private List<Integer> shelfId;
 	private int discount;
 	private int tax;
 	private double price;
@@ -38,12 +42,12 @@ public class ProductBean implements Serializable {
 		this.name = name;
 	}
 
-	public String getShelfId() {
+	public List<Integer> getShelfId() {
 		return shelfId;
 	}
 
-	public void setShelfId(String shelfId) {
-		this.shelfId = shelfId;
+	public void setShelfId(List<String> shelfId) {
+		this.shelfId = shelfId.stream().map(Integer::parseInt).collect(Collectors.toList());
 	}
 
 	public int getDiscount() {
@@ -140,5 +144,16 @@ public class ProductBean implements Serializable {
 	public String deleteProduct() {
 		productService.removeEntity(productService.getProductRepository(), selectedProduct);
 		return null;
+	}
+	
+	@Inject
+	private ShelfService shelfService;
+	public List<Integer> existingShelves(){
+		List<Shelf> existingShelvesList = shelfService.getShelfRepository().getDbElements();
+		List<Integer> existingShelvesId = new ArrayList<>();
+		for(Shelf shelf:existingShelvesList){
+			existingShelvesId.add(shelf.getId());
+		}
+		return existingShelvesId;
 	}
 }

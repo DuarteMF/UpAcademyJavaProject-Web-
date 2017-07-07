@@ -24,3 +24,15 @@
 .input{
 	text-align:center;
 }
+
+.ui-selectonemenu {
+	padding-right:0px !important;
+}
+
+.ui-selectonemenu-trigger{
+	width:25px !important;
+}
+
+#tabs\:ProductAddDialog\:ivaConsole{
+	width:175px !important;
+}
