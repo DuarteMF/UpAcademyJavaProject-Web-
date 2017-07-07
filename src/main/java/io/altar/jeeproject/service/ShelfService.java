@@ -26,8 +26,8 @@ public class ShelfService extends EntityService<Shelf>{
 		return list;
 	}
 	
-	public void editEntity(int id, int location, int capacity, int productID, double rentalPrice){
-		shelfList.alterInDb(id, location, capacity, productID, rentalPrice);
+	public void editEntity(int id, int location, int capacity, String productId, double rentalPrice){
+		shelfList.alterInDb(id, location, capacity, productId, rentalPrice);
 	}
 	
 //	public void editShelf(Shelf shelf){

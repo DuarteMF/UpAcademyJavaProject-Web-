@@ -36,3 +36,7 @@
 #tabs\:ProductAddDialog\:ivaConsole{
 	width:175px !important;
 }
+
+#tabs\:ShelfAddDialog\:shelfProductID{
+	min-width:50px !important;
+}

@@ -28,9 +28,12 @@ public class Product extends EntityModel implements Serializable{
 	private Double salePrice = 0.0;
 	
 	public void setShelfIdLocation(List<String> shelfIdLocation){
-		String s = String.join(", ", shelfIdLocation);
-//		String s = shelfIdLocation.stream().map(e -> e.toString()).reduce(", ", String::concat);
-		this.shelfIdLocation = s;
+		if (!shelfIdLocation.isEmpty()) {
+			String s = String.join(", ", shelfIdLocation);
+			this.shelfIdLocation = s;
+		} else {
+			this.shelfIdLocation = "vazia";
+		}
 	}
 	
 	public void setName(String name){

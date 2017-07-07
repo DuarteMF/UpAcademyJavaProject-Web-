@@ -1,6 +1,7 @@
 package io.altar.jeeproject.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -9,6 +10,7 @@ import javax.inject.Named;
 
 import io.altar.jeeproject.model.Product;
 import io.altar.jeeproject.model.Shelf;
+import io.altar.jeeproject.service.ProductService;
 import io.altar.jeeproject.service.ShelfService;
 
 @Named("ShelfBean")
@@ -19,7 +21,7 @@ public class ShelfBean implements Serializable{
 	private int displayID;
 	private int location;
 	private int capacity;
-	private int productID;
+	private String productId;
 	private double rentalprice;
 	
 	public int getId() {
@@ -54,12 +56,12 @@ public class ShelfBean implements Serializable{
 		this.capacity = capacity;
 	}
 
-	public int getProductID() {
-		return productID;
+	public String getProductId() {
+		return productId;
 	}
 
-	public void setProductID(int productID) {
-		this.productID = productID;
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
 	public double getRentalprice() {
@@ -124,12 +126,7 @@ public class ShelfBean implements Serializable{
 //    }
     
     public String editShelf(){
-    	System.out.println(id);
-    	System.out.println(location);
-    	System.out.println(capacity);
-    	System.out.println(productID);
-    	System.out.println(rentalprice);
-		shelfService.editEntity(id, location, capacity, productID, rentalprice);
+		shelfService.editEntity(id, location, capacity, productId, rentalprice);
     	return null;
     }
 	
@@ -138,4 +135,16 @@ public class ShelfBean implements Serializable{
     	shelfService.removeEntity(shelfService.getShelfRepository(), selectedShelf);
     	return null;
     }
+    
+    @Inject
+	private ProductService productService;
+	public List<Integer> existingProducts(){
+		List<Product> existingProductsList = productService.getProductRepository().getDbElements();
+		List<Integer> existingProductsId = new ArrayList<>();
+		existingProductsId.add(0);
+		for(Product product:existingProductsList){
+			existingProductsId.add(product.getId());
+		}
+		return existingProductsId;
+	}
 }

@@ -7,7 +7,6 @@ import javax.inject.Named;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
-import io.altar.jeeproject.model.Product;
 import io.altar.jeeproject.model.Shelf;
 
 @Named("shelfRepository")
@@ -28,11 +27,11 @@ public class ShelfRepository extends EntityRepository<Shelf> {
 	}
 	
 	@Transactional
-	public void alterInDb(int id, int location, int capacity, int productID, double rentalPrice){
+	public void alterInDb(int id, int location, int capacity, String productID, double rentalPrice){
 		Shelf dbShelf = getDb().find(Shelf.class, id);
 		dbShelf.setLocation(location);
 		dbShelf.setCapacity(capacity);
-		dbShelf.setProductID(productID);
+		dbShelf.setProductId(productID);
 		dbShelf.setLocationRentalPrice(rentalPrice);
 	}
 
