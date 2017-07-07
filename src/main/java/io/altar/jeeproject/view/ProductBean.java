@@ -17,11 +17,11 @@ import io.altar.jeeproject.service.ShelfService;
 @Named("ProductBean")
 @RequestScoped
 public class ProductBean implements Serializable {
-	
+
 	private int id;
 	private int displayId;
 	private String name;
-	private List<Integer> shelfId;
+	private List<String> shelfId;
 	private int discount;
 	private int tax;
 	private double price;
@@ -42,12 +42,13 @@ public class ProductBean implements Serializable {
 		this.name = name;
 	}
 
-	public List<Integer> getShelfId() {
+	public List<String> getShelfId() {
 		return shelfId;
 	}
 
 	public void setShelfId(List<String> shelfId) {
-		this.shelfId = shelfId.stream().map(Integer::parseInt).collect(Collectors.toList());
+		this.shelfId = shelfId;
+//		this.shelfId = shelfId.stream().map(Integer::parseInt).collect(Collectors.toList());
 	}
 
 	public int getDiscount() {

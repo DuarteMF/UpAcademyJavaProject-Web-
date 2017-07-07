@@ -27,7 +27,7 @@ public class ProductRepository extends EntityRepository<Product> {
 	}
 	
 	@Transactional
-	public void alterInDb(int id, String name, List<Integer> shelfId, int discount, int tax, double price){
+	public void alterInDb(int id, String name, List<String> shelfId, int discount, int tax, double price){
 		Product dbProduct = getDb().find(Product.class, id);
 		dbProduct.setName(name);
 		dbProduct.setShelfIdLocation(shelfId);

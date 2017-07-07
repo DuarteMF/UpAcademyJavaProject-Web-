@@ -25,7 +25,7 @@ public class ProductService extends EntityService<Product>{
 		return list;
 	}
 	
-	public void editEntity(int id, String name, List<Integer> shelfId, int discount, int tax, double price){
+	public void editEntity(int id, String name, List<String> shelfId, int discount, int tax, double price){
 		productList.alterInDb(id, name, shelfId, discount, tax, price);
 	}
 	

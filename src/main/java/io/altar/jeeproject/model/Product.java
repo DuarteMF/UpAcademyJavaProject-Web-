@@ -27,8 +27,9 @@ public class Product extends EntityModel implements Serializable{
 	@Column(name="Preço")
 	private Double salePrice = 0.0;
 	
-	public void setShelfIdLocation(List<Integer> shelfIdLocation){
-		String s = shelfIdLocation.stream().map(e -> e.toString()).reduce(", ", String::concat);
+	public void setShelfIdLocation(List<String> shelfIdLocation){
+		String s = String.join(", ", shelfIdLocation);
+//		String s = shelfIdLocation.stream().map(e -> e.toString()).reduce(", ", String::concat);
 		this.shelfIdLocation = s;
 	}
 	

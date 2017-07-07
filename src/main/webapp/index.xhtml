@@ -124,10 +124,10 @@
 									<p:inputText styleClass="input"
 										value="#{ProductBean.newProduct.name}" required="true" />
 
-									<h:outputLabel for="shelfSelection" value="Prateleiras" />
+									<h:outputLabel for="shelfSelection" value="Prateleiras" rendered="#{not empty ProductBean.existingShelves()}"/>
 									<p:selectCheckboxMenu id="shelfSelection"
 										value="#{ProductBean.newProduct.shelfIdLocation}" label="Shelves"
-										multiple="true" styleClass="input">
+										multiple="true" styleClass="input" rendered="#{not empty ProductBean.existingShelves()}">
 										<f:selectItems value="#{ProductBean.existingShelves()}" />
 									</p:selectCheckboxMenu>
 
@@ -170,10 +170,10 @@
 									<p:inputText styleClass="input" readonly="false"
 										value="#{ProductBean.name}" required="true" />
 
-									<h:outputLabel for="shelfSelection" value="Prateleiras" />
+									<h:outputLabel for="shelfSelection" value="Prateleiras" rendered="#{not empty ProductBean.existingShelves()}"/>
 									<p:selectCheckboxMenu id="shelfSelection"
-										value="#{ProductBean.newProduct.shelfIdLocation}" label="Shelves"
-										multiple="true" styleClass="input">
+										value="#{ProductBean.shelfId}" label="Shelves"
+										multiple="true" styleClass="input" rendered="#{not empty ProductBean.existingShelves()}">
 										<f:selectItems value="#{ProductBean.existingShelves()}" />
 									</p:selectCheckboxMenu>
 
