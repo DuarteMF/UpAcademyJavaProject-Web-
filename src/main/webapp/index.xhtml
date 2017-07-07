@@ -72,9 +72,12 @@
 							<f:facet name="footer">
 								<p:commandButton icon="ui-icon-search" value="Mostrar"
 									oncomplete="PF('productDisplay').show()"
-									action="#{ProductBean.display()}">
+									update=":tabs:ProductDisplayDialog:productDetail">
 									<f:setPropertyActionListener target="#{ProductBean.displayId}"
 										value="#{ProductBean.selectedProduct.id}" />
+									<f:setPropertyActionListener
+										target="#{ProductBean.displayedProduct}"
+										value="#{ProductBean.selectedProduct}" />
 								</p:commandButton>
 							</f:facet>
 						</p:dataTable>
@@ -92,20 +95,20 @@
 									<h:outputText value="#{ProductBean.displayId}" />
 
 									<h:outputText value="Nome" />
-									<h:outputText value="#{ProductBean.selectedProduct.name}" />
+									<h:outputText value="#{ProductBean.displayedProduct.name}" />
 
 									<h:outputText value="Prateleiras" />
 									<h:outputText
-										value="#{ProductBean.selectedProduct.shelfIdLocation}" />
+										value="#{ProductBean.displayedProduct.shelfIdLocation}" />
 
 									<h:outputText value="Desconto (%)" />
-									<h:outputText value="#{ProductBean.selectedProduct.discount}%" />
+									<h:outputText value="#{ProductBean.displayedProduct.discount}%" />
 
 									<h:outputText value="IVA (%)" />
-									<h:outputText value="#{ProductBean.selectedProduct.tax}%" />
+									<h:outputText value="#{ProductBean.displayedProduct.tax}%" />
 
 									<h:outputText value="Preço (€)" />
-									<h:outputText value="#{ProductBean.selectedProduct.salePrice}€" />
+									<h:outputText value="#{ProductBean.displayedProduct.salePrice}€" />
 								</p:panelGrid>
 							</p:outputPanel>
 						</p:dialog>
@@ -303,26 +306,24 @@
 							widgetVar="shelfEdit" modal="true" showEffect="fade"
 							hideEffect="fade" resizable="false">
 							<p:outputPanel id="editShelfDetail" style="text-align:center;">
-							<h:inputHidden value="#{ShelfBean.id}"/>
+								<h:inputHidden value="#{ShelfBean.id}" />
 								<p:panelGrid columns="2"
 									rendered="#{not empty ShelfBean.editedShelf}"
 									columnClasses="label,value">
 									<h:outputText value="Localização" />
-									<p:inputText styleClass="input"
-										value="#{ShelfBean.location}" required="true" />
+									<p:inputText styleClass="input" value="#{ShelfBean.location}"
+										required="true" />
 
 									<h:outputText value="Capacidade:" />
-									<p:inputText styleClass="input"
-										value="#{ShelfBean.capacity}" />
+									<p:inputText styleClass="input" value="#{ShelfBean.capacity}" />
 
 									<h:outputText value="ID do Produto" />
-									<p:inputText styleClass="input"
-										value="#{ShelfBean.productID}" required="true" />
+									<p:inputText styleClass="input" value="#{ShelfBean.productID}"
+										required="true" />
 
 									<h:outputText value="Preço de Aluguer" />
 									<p:inputText styleClass="input"
-										value="#{ShelfBean.rentalprice}"
-										required="true" />
+										value="#{ShelfBean.rentalprice}" required="true" />
 								</p:panelGrid>
 								<p:commandButton id="ShelfEditSubmit" value="Submit"
 									update=":msgs,:tabs:ShelfTable:ShelfList"

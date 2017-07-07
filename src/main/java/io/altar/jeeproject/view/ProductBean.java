@@ -93,14 +93,14 @@ public class ProductBean implements Serializable {
 		this.selectedProduct = selectedProduct;
 	}
 	
-	private Product editedProduct = new Product();
+	private Product displayedProduct = new Product();
 	
-	public Product getEditedProduct() {
-		return editedProduct;
+	public Product getDisplayedProduct() {
+		return displayedProduct;
 	}
 
-	public void setEditedProduct(Product editedProduct) {
-		this.editedProduct = editedProduct;
+	public void setDisplayedProduct(Product displayedProduct) {
+		this.displayedProduct = displayedProduct;
 	}
 
 	private Product newProduct = new Product();
