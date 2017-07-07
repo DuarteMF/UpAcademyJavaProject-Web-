@@ -237,7 +237,8 @@
 							</p:column>
 							<f:facet name="footer">
 								<p:commandButton process="ShelfList" icon="ui-icon-search"
-									value="View" oncomplete="PF('shelfDialog').show()">
+									value="View" oncomplete="PF('shelfDialog').show()"
+									update=":tabs:ShelfDisplayDialog:shelfDetail">
 									<f:setPropertyActionListener target="#{ShelfBean.displayID}"
 										value="#{ShelfBean.selectedShelf.id}" />
 								</p:commandButton>
